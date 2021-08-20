@@ -1,0 +1,102 @@
+﻿<Window x:Class="RevitAddinEditor.Views.AddNewControlUI"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RevitAddinEditor.Views"
+        xmlns:vm="clr-namespace:RevitAddinEditor.ViewModels"
+        mc:Ignorable="d"
+        Title="AddNewControl" Height="600" Width="550">
+    <Window.DataContext>
+        <vm:PanelViewModel/>
+    </Window.DataContext>
+    <Grid Background="#2e2e2e">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0">
+            <TextBlock Text="Items" Margin="10" Foreground="White"
+                       VerticalAlignment="Top" HorizontalAlignment="Left"/>
+            <ListBox Margin="10,30,5,80" Background="#242424" BorderThickness="0"
+                     ItemsSource="{Binding Controls}"
+                     SelectedItem="{Binding SelectedControl}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding ControlName}" Foreground="White"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+
+            </ListBox>
+            <Button VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10,0,0,50"
+                    Height="25" Width="30" Content="╳" FontSize="12" FontWeight="Bold"
+                    Padding="-1,-2,0,0" Command="{Binding DeleteControlCommand}"/>
+            <Button VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="42,0,0,50"
+                    Height="25" Width="30" Content="🠕" FontSize="12" FontWeight="Bold"
+                    Padding="-1,-1,0,0" Command="{Binding MoveCommand}"
+                    CommandParameter="-1"/>
+            <Button VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="74,0,0,50"
+                    Height="25" Width="30" Content="🠗" FontSize="12" FontWeight="Bold"
+                    Padding="-1,-1,0,0" Command="{Binding MoveCommand}"
+                    CommandParameter="1"/>
+            <ComboBox VerticalAlignment="Bottom" Margin="107,0,45,50" Height="25"
+                      Background="Black" SelectedIndex="{Binding ControlType}">
+                <TextBlock Text="RegularButton"/>
+                <TextBlock Text="PulldownButton"/>
+                <TextBlock Text="SplitButton"/>
+                <TextBlock Text="StackedButton"/>
+                <TextBlock Text="StackedPulldownButton"/>
+                <TextBlock Text="StackedSplitButton"/>
+                <TextBlock Text="StackItem"/>
+                <TextBlock Text="Textbox"/>
+            </ComboBox>
+            <Button VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,10,50"
+                    Height="25" Width="30" Content="Add" FontSize="12"
+                    Command="{Binding AddControlCommand}"/>
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <TextBlock Text="Properties" Margin="10" Foreground="White"
+                       VerticalAlignment="Top" HorizontalAlignment="Left"/>
+            <ListBox Margin="5,30,10,50" Background="#242424" BorderThickness="0">
+                <!--<ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Row="0" Text="prop" Foreground="White" />
+                            <TextBox Grid.Column="1"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>-->
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Width="100" Foreground="White" Text="Text"/>
+                    <TextBox Width="100" Margin="10,0,0,0"
+                             Text="{Binding SelectedControl.Content}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Width="100" Foreground="White" Text="IconPath"/>
+                    <TextBox Width="100" Margin="10,0,0,0"
+                             Text="{Binding SelectedControl.MainIcon}"/>
+                    <Button Content=". . ." Width="20" Margin="2,0,0,0"
+                            Command="{Binding SelectImageCommand}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Width="100" Foreground="White" Text="Name"/>
+                    <TextBox Width="100" Margin="10,0,0,0"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Width="100" Foreground="White" Text="Items"/>
+                    <Button Width="40" Margin="10,0,0,0" Content=". . ."/>
+                </StackPanel>
+            </ListBox>
+            <Button VerticalAlignment="Bottom" HorizontalAlignment="Right" Height="30" Width="70"
+                    Margin="0,0,10,10" Content="Cancel" FontSize="12"/>
+            <Button VerticalAlignment="Bottom" HorizontalAlignment="Right" Height="30" Width="70"
+                    Margin="0,0,85,10" Content="OK" FontSize="12"/>
+        </Grid>
+    </Grid>
+</Window>
