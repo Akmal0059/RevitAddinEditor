@@ -24,10 +24,10 @@ namespace RevitAddinEditor.ViewModels
         List<string> revitItems;
         List<RevitPanel> panels;
         List<SplitButtonItem> items;
-        Control selectedControl;
-        ObservableCollection<System.Windows.Controls.Control> controls;
+        RevitControl selectedControl;
+        ObservableCollection<RevitControl> controls;
 
-        public ObservableCollection<System.Windows.Controls.Control> Controls
+        public ObservableCollection<RevitControl> Controls
         {
             get => controls;
             set
@@ -36,7 +36,7 @@ namespace RevitAddinEditor.ViewModels
                 OnPropertyChanged();
             }
         }
-        public Control SelectedControl
+        public RevitControl SelectedControl
         {
             get => selectedControl;
             set
@@ -84,7 +84,7 @@ namespace RevitAddinEditor.ViewModels
             OpenItemsEditorCommand = new OpenItemsEditorCommand(this);
             //DeleteControlCommand = new DeleteControlCommand(this);
             TestCmd = new TestCommand(this);
-            Controls = new ObservableCollection<System.Windows.Controls.Control>();
+            Controls = new ObservableCollection<RevitControl>();
             //AddSplitItem();
             //AddPulldown();
             //AddStack();

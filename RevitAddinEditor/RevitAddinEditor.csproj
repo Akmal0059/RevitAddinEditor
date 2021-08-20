@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="RevitAddinBase">
+      <HintPath>..\..\RevitAddinBase\RevitAddinBase\bin\Debug\RevitAddinBase.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -62,8 +65,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Commands\AddControlCommand.cs" />
-    <Compile Include="Commands\CommandBase.cs" />
+    <Compile Include="Commands\Base\CommandBase.cs" />
     <Compile Include="Commands\DeleteControlCommand.cs" />
+    <Compile Include="Commands\EditItemsCommand.cs" />
     <Compile Include="Commands\MoveCommand.cs" />
     <Compile Include="Commands\OpenItemsEditorCommand.cs" />
     <Compile Include="Commands\SelectImageCommand.cs" />

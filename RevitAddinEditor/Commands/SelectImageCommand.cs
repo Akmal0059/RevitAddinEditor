@@ -24,7 +24,7 @@ namespace RevitAddinEditor.Commands
             dialog.Filter = "Image (*.png)|*.png";
             if(dialog.ShowDialog() == DialogResult.OK)
 {
-                ((IRibbonBase)viewModel.SelectedControl).MainIcon = GetImageSource(dialog.FileName);
+                viewModel.SelectedControl.MainIcon = GetImageSource(dialog.FileName);
             }
         }
         ImageSource GetImageSource(string path)

@@ -1,5 +1,7 @@
-﻿using RevitAddinEditor.ViewModels;
+﻿using CustomRevitControls;
+using RevitAddinEditor.ViewModels;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -21,10 +23,16 @@ namespace RevitAddinEditor.Views
     /// </summary>
     public partial class AddNewControlUI : Window
     {
-        public AddNewControlUI(ObservableCollection<Control> contols)
+        public AddNewControlUI(ObservableCollection<RevitControl> contols)
         {
             InitializeComponent();
             (DataContext as PanelViewModel).Controls = contols;
+        }
+
+        public AddNewControlUI(IEnumerable items)
+        {
+            InitializeComponent();
+            //(DataContext as PanelViewModel).Controls = items;
         }
     }
 }

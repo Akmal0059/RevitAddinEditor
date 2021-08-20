@@ -17,6 +17,8 @@ namespace RevitAddinEditor.Commands
         public override void Execute(object parameter)
         {
             viewModel.Controls.Remove(viewModel.SelectedControl);
+            if (viewModel.Controls.Count != 0)
+                viewModel.SelectedControl = viewModel.Controls.Last();
         }
     }
 }

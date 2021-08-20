@@ -1,4 +1,5 @@
-﻿using RevitAddinEditor.Commands;
+﻿using CustomRevitControls;
+using RevitAddinEditor.Commands;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,8 +14,8 @@ namespace RevitAddinEditor.ViewModels
     public class PanelViewModel:ViewModelBase
     {
         string name;
-        ObservableCollection<Control> controls;
-        Control selectedControl;
+        ObservableCollection<RevitControl> controls;
+        RevitControl selectedControl;
         int ctype;
 
         public string Name 
@@ -26,7 +27,7 @@ namespace RevitAddinEditor.ViewModels
                 OnPropertyChanged();
             }
         }
-        public ObservableCollection<Control> Controls 
+        public ObservableCollection<RevitControl> Controls 
         {
             get => controls;
             set
@@ -35,7 +36,7 @@ namespace RevitAddinEditor.ViewModels
                 OnPropertyChanged();
             }
         }
-        public Control SelectedControl 
+        public RevitControl SelectedControl 
         {
             get => selectedControl;
             set
@@ -57,14 +58,16 @@ namespace RevitAddinEditor.ViewModels
         public ICommand DeleteControlCommand { get; set; }
         public ICommand SelectImageCommand { get; set; }
         public ICommand MoveCommand {  get; set; }
+        public ICommand EditItemsCommand { get; }
 
         public PanelViewModel()
         {
-            Controls = new ObservableCollection<Control>();
+            Controls = new ObservableCollection<RevitControl>();
             AddControlCommand = new AddControlCommand(this);
             SelectImageCommand = new SelectImageCommand(this);
             DeleteControlCommand = new DeleteControlCommand(this);
             MoveCommand = new MoveCommand(this);
+            EditItemsCommand = new EditItemsCommand(this);
         }
     }
 

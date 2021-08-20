@@ -18,7 +18,7 @@ namespace RevitAddinEditor.Commands
 
         public override void Execute(object parameter)
         {
-            Control control = null;
+            RevitControl control = null;
 
             switch (viewModel.ControlType)
             {
@@ -51,6 +51,7 @@ namespace RevitAddinEditor.Commands
             }
 
             viewModel.Controls.Add(control);
+            viewModel.SelectedControl = control;
         }
     }
 }
