@@ -12,7 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
-namespace RevitAddinEditor.Commands
+namespace RevitAddinEditor.Commands.EditItemsCommands
 {
     public class SelectImageCommand : CommandBase
     {

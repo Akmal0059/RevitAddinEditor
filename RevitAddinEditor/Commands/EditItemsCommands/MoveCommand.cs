@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
-namespace RevitAddinEditor.Commands
+namespace RevitAddinEditor.Commands.EditItemsCommands
 {
     public class MoveCommand : CommandBase
     {

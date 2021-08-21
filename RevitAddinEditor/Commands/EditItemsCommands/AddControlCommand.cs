@@ -1,4 +1,5 @@
 ﻿using CustomRevitControls;
+using RevitAddinEditor.Models;
 using RevitAddinEditor.ViewModels;
 using RevitAddinEditor.Views;
 using System;
@@ -8,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
-namespace RevitAddinEditor.Commands
+namespace RevitAddinEditor.Commands.EditItemsCommands
 {
     public class AddControlCommand : CommandBase
     {
@@ -20,7 +21,7 @@ namespace RevitAddinEditor.Commands
         {
             RevitControl control = null;
 
-            switch (viewModel.ControlType)
+            switch (viewModel.SelectedControlType.Type)
             {
                 case ControlType.Regular:
                     control = new RegularButton();

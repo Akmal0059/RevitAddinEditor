@@ -1,4 +1,6 @@
-﻿using RevitAddinEditor.ViewModels;
+﻿using CustomRevitControls;
+using RevitAddinEditor.Models;
+using RevitAddinEditor.ViewModels;
 using RevitAddinEditor.Views;
 using System;
 using System.Collections.Generic;
@@ -17,9 +19,15 @@ namespace RevitAddinEditor.Commands
         public override void Execute(object parameter)
         {
             AddNewControlUI ui = new AddNewControlUI(viewModel.Controls);
+            foreach(var addindControl in (ui.DataContext as PanelViewModel).AddingControls)
+            {
+                if (addindControl.Type == ControlType.Regular || addindControl.Type == ControlType.StackButton ||
+                    addindControl.Type == ControlType.SplitButton || addindControl.Type == ControlType.Pulldown)
+                    addindControl.Visible = true;
+            }
             ui.ShowDialog();
-
-            viewModel.Controls = (ui.DataContext as PanelViewModel).Controls;
+            if ((ui.DataContext as PanelViewModel).DialogResult == System.Windows.Forms.DialogResult.OK)
+                viewModel.Controls = (ui.DataContext as PanelViewModel).Controls;
         }
     }
 }

@@ -3,10 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:RevitAddinEditor.Views"
+        xmlns:local="clr-namespace:RevitAddinEditor"
         xmlns:vm="clr-namespace:RevitAddinEditor.ViewModels"
-        mc:Ignorable="d"
+        mc:Ignorable="d" x:Name="MainWindow"
         Title="AddNewControl" Height="600" Width="550">
+    <Window.Resources>
+        <local:MultiParamConverter x:Key="MultiParamConverter"/>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </Window.Resources>
     <Window.DataContext>
         <vm:PanelViewModel/>
     </Window.DataContext>
@@ -41,15 +45,20 @@
                     Padding="-1,-1,0,0" Command="{Binding MoveCommand}"
                     CommandParameter="1"/>
             <ComboBox VerticalAlignment="Bottom" Margin="107,0,45,50" Height="25"
-                      Background="Black" SelectedIndex="{Binding ControlType}">
-                <TextBlock Text="RegularButton"/>
-                <TextBlock Text="PulldownButton"/>
-                <TextBlock Text="SplitButton"/>
-                <TextBlock Text="StackedButton"/>
-                <TextBlock Text="StackedPulldownButton"/>
-                <TextBlock Text="StackedSplitButton"/>
-                <TextBlock Text="StackItem"/>
-                <TextBlock Text="Textbox"/>
+                      Background="Black" 
+                      SelectedItem="{Binding SelectedControlType}"
+                      ItemsSource="{Binding AddingControls}">
+                <ComboBox.ItemContainerStyle>
+                    <Style TargetType="ComboBoxItem">
+                        <Setter Property="Visibility" 
+                                Value="{Binding Visible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                    </Style>
+                </ComboBox.ItemContainerStyle>
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
             </ComboBox>
             <Button VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,10,50"
                     Height="25" Width="30" Content="Add" FontSize="12"
@@ -94,10 +103,27 @@
                             Command="{Binding EditItemsCommand}"/>
                 </StackPanel>
             </ListBox>
-            <Button VerticalAlignment="Bottom" HorizontalAlignment="Right" Height="30" Width="70"
-                    Margin="0,0,10,10" Content="Cancel" FontSize="12"/>
-            <Button VerticalAlignment="Bottom" HorizontalAlignment="Right" Height="30" Width="70"
-                    Margin="0,0,85,10" Content="OK" FontSize="12"/>
+            <Button x:Name="Btn_Cancel" VerticalAlignment="Bottom" 
+                    HorizontalAlignment="Right" Height="30" Width="70" 
+                    Margin="0,0,10,10"  Content="Cancel" FontSize="12"
+                    Command="{Binding CloseCommand}">
+                <Button.CommandParameter>
+                    <MultiBinding Converter="{StaticResource MultiParamConverter}">
+                        <Binding ElementName="Btn_Cancel"/>
+                        <Binding ElementName="MainWindow"/>
+                    </MultiBinding>
+                </Button.CommandParameter>
+            </Button>
+            <Button x:Name="Btn_Ok" VerticalAlignment="Bottom" HorizontalAlignment="Right" 
+                    Height="30" Width="70" Margin="0,0,85,10" Content="OK"
+                    FontSize="12" Command="{Binding CloseCommand}">
+                <Button.CommandParameter>
+                    <MultiBinding Converter="{StaticResource MultiParamConverter}">
+                        <Binding ElementName="Btn_Ok"/>
+                        <Binding ElementName="MainWindow"/>
+                    </MultiBinding>
+                </Button.CommandParameter>
+            </Button>
         </Grid>
     </Grid>
 </Window>

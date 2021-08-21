@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RevitAddinEditor.Commands
+namespace RevitAddinEditor.Commands.EditItemsCommands
 {
     public class DeleteControlCommand : CommandBase
     {

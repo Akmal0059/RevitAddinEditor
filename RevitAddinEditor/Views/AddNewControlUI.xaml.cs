@@ -11,6 +11,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -23,16 +24,10 @@ namespace RevitAddinEditor.Views
     /// </summary>
     public partial class AddNewControlUI : Window
     {
-        public AddNewControlUI(ObservableCollection<RevitControl> contols)
+        public AddNewControlUI(IEnumerable<RevitControl> contols)
         {
             InitializeComponent();
-            (DataContext as PanelViewModel).Controls = contols;
-        }
-
-        public AddNewControlUI(IEnumerable items)
-        {
-            InitializeComponent();
-            //(DataContext as PanelViewModel).Controls = items;
+            (DataContext as PanelViewModel).Controls = new ObservableCollection<RevitControl>(contols);
         }
     }
 }

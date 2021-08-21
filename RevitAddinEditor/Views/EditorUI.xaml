@@ -51,7 +51,7 @@
                 Command="{Binding OpenItemsEditorCommand}"/>
         <Button Grid.Column="1" Grid.Row="2" Margin="160,10,315,150" Content="-"
                 Command="{Binding DeleteControlCommand}"/>
-        <ListView Grid.Column="1" Margin="340,10,10,30" Grid.Row="2">
+        <!--<ListView Grid.Column="1" Margin="340,10,10,30" Grid.Row="2">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Icon" Width="100"/>
                 <TextBox Width="100" Margin="5,0,0,0"/>
@@ -65,7 +65,7 @@
                 <Button Width="37" Margin="5,0,0,0" Content=". . ."/>
             </StackPanel>
             <Button Width="50" Height="20" Content="Update"/>
-        </ListView>
+        </ListView>-->
 
     </Grid>
 </Window>

@@ -87,73 +87,73 @@ namespace RevitAddinEditor.ViewModels
             Controls = new ObservableCollection<RevitControl>();
             //AddSplitItem();
             //AddPulldown();
-            //AddStack();
+            AddStack();
         }
 
         void AddSplitItem()
         {
-            SplitItem spb = new SplitItem();
-            spb.Content = "SplitBtn";
-            spb.CurrentIndex = 0;
-            //SplitItem spb2 = new SplitItem();
-            var items = new List<SplitButtonItem>();
-            items.Add(new SplitButtonItem("111", @"F:\Apps\design.png"));
-            items.Add(new SplitButtonItem("222", @"F:\Apps\protect.png"));
-            items.Add(new SplitButtonItem("333", @"F:\Apps\design.png"));
-            items.Add(new SplitButtonItem("444", @"F:\Apps\protect.png"));
-            spb.Items = items;
-            //spb2.Items = items;
-            Controls.Add(spb);
-            //Controls.Add(spb2);
+            //SplitItem spb = new SplitItem();
+            //spb.Content = "SplitBtn";
+            //spb.CurrentIndex = 0;
+            ////SplitItem spb2 = new SplitItem();
+            //var items = new List<SplitButtonItem>();
+            //items.Add(new SplitButtonItem("111", @"F:\Apps\design.png"));
+            //items.Add(new SplitButtonItem("222", @"F:\Apps\protect.png"));
+            //items.Add(new SplitButtonItem("333", @"F:\Apps\design.png"));
+            //items.Add(new SplitButtonItem("444", @"F:\Apps\protect.png"));
+            //spb.Items = items;
+            ////spb2.Items = items;
+            //Controls.Add(spb);
+            ////Controls.Add(spb2);
         }
         void AddPulldown()
         {
-            PulldownButton pb = new PulldownButton();
-            pb.MainIcon = GetImageSource(@"F:\Apps\design.png");
-            pb.Content = "Pulldown";
-            var items = new List<PulldownItem>();
-            items.Add(new PulldownItem("111", @"F:\Apps\design.png"));
-            items.Add(new PulldownItem("222", @"F:\Apps\protect.png"));
-            items.Add(new PulldownItem("333", @"F:\Apps\design.png"));
-            items.Add(new PulldownItem("444", @"F:\Apps\protect.png"));
-            pb.Items = items;
-            Controls.Add(pb);
+            //PulldownButton pb = new PulldownButton();
+            //pb.MainIcon = GetImageSource(@"F:\Apps\design.png");
+            //pb.Content = "Pulldown";
+            //var items = new List<PulldownItem>();
+            //items.Add(new PulldownItem("111", @"F:\Apps\design.png"));
+            //items.Add(new PulldownItem("222", @"F:\Apps\protect.png"));
+            //items.Add(new PulldownItem("333", @"F:\Apps\design.png"));
+            //items.Add(new PulldownItem("444", @"F:\Apps\protect.png"));
+            //pb.Items = items;
+            //Controls.Add(pb);
         }
         void AddStack()
         {
             StackButton sb = new StackButton();
+
             StackedPulldown pb = new StackedPulldown();
-            pb.MainIcon = GetImageSource(@"F:\Apps\design.png");
+            //pb.MainIcon = GetImageSource(@"F:\Apps\design.png");
             pb.Content = "StPulldown";
-            var items = new List<PulldownItem>();
-            items.Add(new PulldownItem("111", @"F:\Apps\design.png"));
-            items.Add(new PulldownItem("2225555", @"F:\Apps\protect.png"));
-            items.Add(new PulldownItem("333", @"F:\Apps\design.png"));
-            items.Add(new PulldownItem("444", @"F:\Apps\protect.png"));
+            var items = new List<RevitControl>();
+            items.Add(new StackItem("111"));
+            items.Add(new StackItem("2225555"));
+            items.Add(new StackItem("333"));
+            items.Add(new StackItem("444"));
             pb.Items = items;
             pb.CalculateWidth();
             
             StackedSplitItem spb = new StackedSplitItem();
             spb.Content = "StSplitItem";
             //SplitItem spb2 = new SplitItem();
-            var items2 = new List<SplitButtonItem>();
-            items2.Add(new SplitButtonItem("111", @"F:\Apps\design.png"));
-            items2.Add(new SplitButtonItem("222121321", @"F:\Apps\protect.png"));
-            items2.Add(new SplitButtonItem("333", @"F:\Apps\design.png"));
-            items2.Add(new SplitButtonItem("444", @"F:\Apps\protect.png"));
+            var items2 = new List<RevitControl>();
+            //items2.Add(new SplitButtonItem("111", @"F:\Apps\design.png"));
+            //items2.Add(new SplitButtonItem("222121321", @"F:\Apps\protect.png"));
+            //items2.Add(new SplitButtonItem("333", @"F:\Apps\design.png"));
+            //items2.Add(new SplitButtonItem("444", @"F:\Apps\protect.png"));
             spb.Items = items2;
             spb.CalculateWidth();
 
-            StackItem si = new StackItem();
-            si.MainIcon = GetImageSource(@"F:\Apps\protect.png");
-            si.Content = "Stack btn";
+            StackItem si = new StackItem("Stack btn");
+            //si.MainIcon = GetImageSource(@"F:\Apps\protect.png");
             si.CalculateWidth();
 
 
             TextBoxItem tbi = new TextBoxItem();
             tbi.TextBoxWidth = 120;
 
-            sb.Items = new List<System.Windows.Controls.Control> { pb, tbi, si };
+            sb.Items = new List<RevitControl> { pb, spb, si };
             Controls.Add(sb);
         }
 

@@ -64,15 +64,18 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Commands\AddControlCommand.cs" />
+    <Compile Include="Commands\EditItemsCommands\AddControlCommand.cs" />
     <Compile Include="Commands\Base\CommandBase.cs" />
-    <Compile Include="Commands\DeleteControlCommand.cs" />
-    <Compile Include="Commands\EditItemsCommand.cs" />
-    <Compile Include="Commands\MoveCommand.cs" />
+    <Compile Include="Commands\EditItemsCommands\CloseCommand.cs" />
+    <Compile Include="Commands\EditItemsCommands\DeleteControlCommand.cs" />
+    <Compile Include="Commands\EditItemsCommands\EditItemsCommand.cs" />
+    <Compile Include="Commands\EditItemsCommands\MoveCommand.cs" />
     <Compile Include="Commands\OpenItemsEditorCommand.cs" />
-    <Compile Include="Commands\SelectImageCommand.cs" />
+    <Compile Include="Commands\EditItemsCommands\SelectImageCommand.cs" />
     <Compile Include="Commands\SetAssemblyCommand.cs" />
     <Compile Include="Commands\TestCommand.cs" />
+    <Compile Include="Converters.cs" />
+    <Compile Include="Models\AddingControl.cs" />
     <Compile Include="ViewModels\EditorViewModel.cs" />
     <Compile Include="ViewModels\PanelViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
