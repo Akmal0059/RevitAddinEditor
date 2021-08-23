@@ -70,6 +70,8 @@
     <Compile Include="Commands\EditItemsCommands\DeleteControlCommand.cs" />
     <Compile Include="Commands\EditItemsCommands\EditItemsCommand.cs" />
     <Compile Include="Commands\EditItemsCommands\MoveCommand.cs" />
+    <Compile Include="Commands\ExportSettingsCommand.cs" />
+    <Compile Include="Commands\ImportSettingsCommand.cs" />
     <Compile Include="Commands\OpenItemsEditorCommand.cs" />
     <Compile Include="Commands\EditItemsCommands\SelectImageCommand.cs" />
     <Compile Include="Commands\SetAssemblyCommand.cs" />

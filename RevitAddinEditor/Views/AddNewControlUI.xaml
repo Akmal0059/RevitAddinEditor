@@ -9,6 +9,7 @@
         Title="AddNewControl" Height="600" Width="550">
     <Window.Resources>
         <local:MultiParamConverter x:Key="MultiParamConverter"/>
+        <local:VisibilityConverter x:Key="vConverter"/>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     </Window.Resources>
     <Window.DataContext>
@@ -68,8 +69,9 @@
         <Grid Grid.Column="1">
             <TextBlock Text="Properties" Margin="10" Foreground="White"
                        VerticalAlignment="Top" HorizontalAlignment="Left"/>
-            <ListBox Margin="5,30,10,50" Background="#242424" BorderThickness="0">
-                <!--<ListBox.ItemTemplate>
+            <ListBox Margin="5,30,10,50" Background="#242424" BorderThickness="0"
+                     ItemsSource="{Binding SelectedControl.Properties}">
+                <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -77,11 +79,16 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <TextBlock Grid.Row="0" Text="prop" Foreground="White" />
-                            <TextBox Grid.Column="1"/>
+                            <TextBox Grid.Column="1" 
+                                     Visibility="{Binding Type, Converter={StaticResource vConverter}}"/>
+                            <Button Grid.Column="1" Command="{Binding BrowseCommand}"
+                                    Visibility="{Binding Type, Converter={StaticResource vConverter}}"/>
+                            <ComboBox Grid.Column="1" ItemsSource="{Binding Items}"
+                                    Visibility="{Binding Type, Converter={StaticResource vConverter}}"/>
                         </Grid>
                     </DataTemplate>
-                </ListBox.ItemTemplate>-->
-                <StackPanel Orientation="Horizontal">
+                </ListBox.ItemTemplate>
+                <!--<StackPanel Orientation="Horizontal">
                     <TextBlock Width="100" Foreground="White" Text="Text"/>
                     <TextBox Width="100" Margin="10,0,0,0"
                              Text="{Binding SelectedControl.Content}"/>
@@ -101,7 +108,7 @@
                     <TextBlock Width="100" Foreground="White" Text="Items"/>
                     <Button Width="40" Margin="10,0,0,0" Content=". . ."
                             Command="{Binding EditItemsCommand}"/>
-                </StackPanel>
+                </StackPanel>-->
             </ListBox>
             <Button x:Name="Btn_Cancel" VerticalAlignment="Bottom" 
                     HorizontalAlignment="Right" Height="30" Width="70" 

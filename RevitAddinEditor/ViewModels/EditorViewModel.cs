@@ -75,6 +75,8 @@ namespace RevitAddinEditor.ViewModels
         }
         public ICommand SetAssemblyCommand { get; }
         public ICommand OpenItemsEditorCommand { get; }
+        public ICommand ImportSettings { get; }
+        public ICommand ExportSettings { get; }
         public ICommand TestCmd { get; }
 
         public EditorViewModel()
@@ -84,6 +86,8 @@ namespace RevitAddinEditor.ViewModels
             OpenItemsEditorCommand = new OpenItemsEditorCommand(this);
             //DeleteControlCommand = new DeleteControlCommand(this);
             TestCmd = new TestCommand(this);
+            ImportSettings = new ImportSettingsCommand(this);
+            ExportSettings = new ExportSettingsCommand(this);
             Controls = new ObservableCollection<RevitControl>();
             //AddSplitItem();
             //AddPulldown();
@@ -127,10 +131,10 @@ namespace RevitAddinEditor.ViewModels
             //pb.MainIcon = GetImageSource(@"F:\Apps\design.png");
             pb.Content = "StPulldown";
             var items = new List<RevitControl>();
-            items.Add(new StackItem("111"));
-            items.Add(new StackItem("2225555"));
-            items.Add(new StackItem("333"));
-            items.Add(new StackItem("444"));
+            items.Add(new StackedRegularButton() { Content = "123" });
+            items.Add(new StackedRegularButton() { Content = "2225555" });
+            items.Add(new StackedRegularButton() { Content = "333" });
+            items.Add(new StackedRegularButton() { Content = "444" });
             pb.Items = items;
             pb.CalculateWidth();
             
@@ -145,7 +149,7 @@ namespace RevitAddinEditor.ViewModels
             spb.Items = items2;
             spb.CalculateWidth();
 
-            StackItem si = new StackItem("Stack btn");
+            StackedRegularButton si = new StackedRegularButton() { Content = "Stack btn" };
             //si.MainIcon = GetImageSource(@"F:\Apps\protect.png");
             si.CalculateWidth();
 

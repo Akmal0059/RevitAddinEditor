@@ -41,8 +41,8 @@ namespace RevitAddinEditor.Commands.EditItemsCommands
                 case ControlType.StackedSplitItem:
                     control = new StackedSplitItem();
                     break;
-                case ControlType.StackedItem:
-                    control = new StackItem();
+                case ControlType.StackedRegButton:
+                    control = new StackedRegularButton();
                     break;
                 case ControlType.TextBox:
                     control = new TextBoxItem();

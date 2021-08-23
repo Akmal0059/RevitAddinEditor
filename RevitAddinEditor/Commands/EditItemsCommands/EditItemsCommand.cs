@@ -29,20 +29,32 @@ namespace RevitAddinEditor.Commands.EditItemsCommands
             if (viewModel.SelectedControl.Items == null)
                 viewModel.SelectedControl.Items = new List<RevitControl>();
             AddNewControlUI ui = new AddNewControlUI(viewModel.SelectedControl.Items);
-            foreach (var addindControl in (ui.DataContext as PanelViewModel).AddingControls)
+            if (viewModel.SelectedControl is StackedPulldown || viewModel.SelectedControl is StackedSplitItem)
             {
-                if (addindControl.Type == ControlType.TextBox || addindControl.Type == ControlType.StackedSplitItem ||
-                    addindControl.Type == ControlType.StackedPulldown || addindControl.Type == ControlType.StackedItem)
-                    addindControl.Visible = true;
+                foreach (var addindControl in (ui.DataContext as PanelViewModel).AddingControls)
+                {
+                    if (addindControl.Type == ControlType.StackedRegButton)
+                        addindControl.Visible = true;
+                }
+            }
+            else
+            {
+                foreach (var addindControl in (ui.DataContext as PanelViewModel).AddingControls)
+                {
+                    if (addindControl.Type == ControlType.TextBox || addindControl.Type == ControlType.StackedSplitItem ||
+                        addindControl.Type == ControlType.StackedPulldown || addindControl.Type == ControlType.StackedRegButton)
+                        addindControl.Visible = true;
+                }
             }
             ui.ShowDialog();
             if ((ui.DataContext as PanelViewModel).DialogResult == System.Windows.Forms.DialogResult.OK)
             {
                 viewModel.SelectedControl.Items = (ui.DataContext as PanelViewModel).Controls.ToList();
-                if(viewModel.SelectedControl is StackButton)
+                if (viewModel.SelectedControl is StackButton)
                 {
-                    foreach (IStackItem item in viewModel.SelectedControl.Items)
-                        item.CalculateWidth();
+                    foreach (var item in viewModel.SelectedControl.Items)
+                        if (item is IStackItem)
+                            (item as IStackItem).CalculateWidth();
                 }
             }
         }

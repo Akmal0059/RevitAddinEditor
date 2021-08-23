@@ -25,6 +25,8 @@
         <Menu Grid.Column="0">
             <MenuItem Header="File" Margin="2,1,2,0" VerticalAlignment="Center">
                 <MenuItem Header="Set assembly" Command="{Binding SetAssemblyCommand}"/>
+                <MenuItem Header="Export as xml" Command="{Binding ExportSettings}"/>
+                <MenuItem Header="Import xml" Command="{Binding ImportSettings}"/>
             </MenuItem>
         </Menu>
         <ListBox Grid.Column="0" Grid.Row="1" Margin="10,10,10,10" 
