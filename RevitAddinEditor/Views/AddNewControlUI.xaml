@@ -46,7 +46,7 @@
                     Padding="-1,-1,0,0" Command="{Binding MoveCommand}"
                     CommandParameter="1"/>
             <ComboBox VerticalAlignment="Bottom" Margin="107,0,45,50" Height="25"
-                      Background="Black" 
+                      Background="Black" SelectedIndex="0"
                       SelectedItem="{Binding SelectedControlType}"
                       ItemsSource="{Binding AddingControls}">
                 <ComboBox.ItemContainerStyle>
@@ -71,23 +71,26 @@
                        VerticalAlignment="Top" HorizontalAlignment="Left"/>
             <ListBox Margin="5,30,10,50" Background="#242424" BorderThickness="0"
                      ItemsSource="{Binding SelectedControl.Properties}">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Row="0" Text="prop" Foreground="White" />
-                            <TextBox Grid.Column="1" 
-                                     Visibility="{Binding Type, Converter={StaticResource vConverter}}"/>
-                            <Button Grid.Column="1" Command="{Binding BrowseCommand}"
-                                    Visibility="{Binding Type, Converter={StaticResource vConverter}}"/>
-                            <ComboBox Grid.Column="1" ItemsSource="{Binding Items}"
-                                    Visibility="{Binding Type, Converter={StaticResource vConverter}}"/>
-                        </Grid>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ListBoxItem">
+                                    <Grid Margin="1">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="100"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Text="{Binding Name}" Foreground="White" />
+                                        <Border Grid.Column="1">
+                                            <ContentPresenter Content="{Binding WpfControl}"/>
+                                        </Border>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListBox.ItemContainerStyle>
                 <!--<StackPanel Orientation="Horizontal">
                     <TextBlock Width="100" Foreground="White" Text="Text"/>
                     <TextBox Width="100" Margin="10,0,0,0"

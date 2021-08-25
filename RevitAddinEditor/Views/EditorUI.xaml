@@ -12,7 +12,7 @@
     <Window.DataContext>
         <vm:EditorViewModel/>
     </Window.DataContext>
-    <Grid>
+    <Grid Background="#242424">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20*"/>
             <ColumnDefinition Width="60*"/>

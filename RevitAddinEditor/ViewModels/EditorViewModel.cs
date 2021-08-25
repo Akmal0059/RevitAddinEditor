@@ -126,7 +126,7 @@ namespace RevitAddinEditor.ViewModels
         void AddStack()
         {
             StackButton sb = new StackButton();
-
+            sb.Content = "sb test";
             StackedPulldown pb = new StackedPulldown();
             //pb.MainIcon = GetImageSource(@"F:\Apps\design.png");
             pb.Content = "StPulldown";
@@ -158,6 +158,9 @@ namespace RevitAddinEditor.ViewModels
             tbi.TextBoxWidth = 120;
 
             sb.Items = new List<RevitControl> { pb, spb, si };
+            sb.Properties.Add(new PropertyItem(sb, "Content", new System.Windows.Controls.TextBox()));
+            sb.Properties.Add(new PropertyItem(sb, "MainIcon", new System.Windows.Controls.TextBox()));
+            sb.Properties.Add(new PropertyItem(sb, "Items", new System.Windows.Controls.Button(), new OpenItemsEditorCommand(this)));
             Controls.Add(sb);
         }
 
