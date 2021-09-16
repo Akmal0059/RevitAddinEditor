@@ -60,6 +60,7 @@ namespace RevitAddinEditor.ViewModels
         public ICommand ExportSettings { get; }
         public ICommand TestCmd { get; }
         public ICommand AddPanelCommand { get; }
+        public ICommand RemovePanelCommand { get; }
 
         public EditorViewModel()
         {
@@ -68,6 +69,7 @@ namespace RevitAddinEditor.ViewModels
             ImportSettings = new ImportSettingsCommand(this);
             ExportSettings = new ExportSettingsCommand(this);
             AddPanelCommand = new AddPanelCommand(this);
+            RemovePanelCommand = new RemovePanelCommand(this);
 
             revitItems = new List<string>();
             Panels = new ObservableCollection<RevitPanel>();

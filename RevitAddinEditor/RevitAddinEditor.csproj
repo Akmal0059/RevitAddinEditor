@@ -99,6 +99,7 @@
     <Compile Include="Commands\ImportSettingsCommand.cs" />
     <Compile Include="Commands\OpenItemsEditorCommand.cs" />
     <Compile Include="Commands\EditItemsCommands\SelectImageCommand.cs" />
+    <Compile Include="Commands\RemovePanelCommand.cs" />
     <Compile Include="Commands\SetAssemblyCommand.cs" />
     <Compile Include="Commands\TestCommand.cs" />
     <Compile Include="Converters.cs" />

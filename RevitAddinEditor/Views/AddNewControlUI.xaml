@@ -70,7 +70,8 @@
             <TextBlock Text="Properties" Margin="10" Foreground="White"
                        VerticalAlignment="Top" HorizontalAlignment="Left"/>
             <ListBox Margin="5,30,10,50" Background="#242424" BorderThickness="0"
-                     ItemsSource="{Binding SelectedControl.Properties}">
+                     ItemsSource="{Binding SelectedControl.Properties}"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="ListBoxItem">
                         <Setter Property="Template">
