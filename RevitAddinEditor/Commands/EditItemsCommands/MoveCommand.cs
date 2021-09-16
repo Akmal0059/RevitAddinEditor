@@ -14,6 +14,8 @@ namespace RevitAddinEditor.Commands.EditItemsCommands
 
         public MoveCommand(PanelViewModel vm) => viewModel = vm;
 
+        public override bool CanExecute(object parameter) => viewModel.SelectedControl != null;
+
         public override void Execute(object parameter)
         {
             var dir = Int32.Parse(parameter.ToString());

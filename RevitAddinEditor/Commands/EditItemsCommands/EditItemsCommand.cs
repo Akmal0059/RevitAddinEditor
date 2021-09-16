@@ -1,5 +1,5 @@
 ﻿using CustomRevitControls;
-using CustomRevitControls.Items;
+using CustomRevitControls.Interfaces;
 using RevitAddinEditor.Models;
 using RevitAddinEditor.ViewModels;
 using RevitAddinEditor.Views;
@@ -13,25 +13,30 @@ namespace RevitAddinEditor.Commands.EditItemsCommands
 {
     public class EditItemsCommand : CommandBase
     {
-        private PanelViewModel viewModel;
+        //private PanelViewModel viewModel;
+        RevitControl revitControl;
 
-        public EditItemsCommand(PanelViewModel vm) => viewModel = vm;
+        public EditItemsCommand(RevitControl rc) => revitControl = rc;
 
         public override bool CanExecute(object parameter)
         {
-            if (viewModel.SelectedControl != null)
-                return ((RevitControl)viewModel.SelectedControl).HasElements;
-            else return false;
+            //if (viewModel.SelectedControl != null)
+            //    return ((RevitControl)viewModel.SelectedControl).HasElements;
+            //else return false;
+            return true;
         }
 
         public override void Execute(object parameter)
         {
-            if (viewModel.SelectedControl.Items == null)
-                viewModel.SelectedControl.Items = new List<RevitControl>();
-            AddNewControlUI ui = new AddNewControlUI(viewModel.SelectedControl.Items);
-            if (viewModel.SelectedControl is StackedPulldown || viewModel.SelectedControl is StackedSplitItem)
+            if (revitControl.Items == null)
+                revitControl.Items = new List<RevitControl>();
+            AddNewControlUI ui = new AddNewControlUI(revitControl.Items);
+            var vm = ui.DataContext as PanelViewModel;
+
+            if (revitControl is StackedPulldown || revitControl is StackedSplitItem ||
+                revitControl is PulldownButton || revitControl is SplitItem)
             {
-                foreach (var addindControl in (ui.DataContext as PanelViewModel).AddingControls)
+                foreach (var addindControl in vm.AddingControls)
                 {
                     if (addindControl.Type == ControlType.StackedRegButton)
                         addindControl.Visible = true;
@@ -39,22 +44,35 @@ namespace RevitAddinEditor.Commands.EditItemsCommands
             }
             else
             {
-                foreach (var addindControl in (ui.DataContext as PanelViewModel).AddingControls)
+                foreach (var addindControl in vm.AddingControls)
                 {
                     if (addindControl.Type == ControlType.TextBox || addindControl.Type == ControlType.StackedSplitItem ||
                         addindControl.Type == ControlType.StackedPulldown || addindControl.Type == ControlType.StackedRegButton)
                         addindControl.Visible = true;
                 }
             }
+            
+            vm.SelectedControlType = vm.AddingControls.FirstOrDefault(x => x.Visible);
             ui.ShowDialog();
-            if ((ui.DataContext as PanelViewModel).DialogResult == System.Windows.Forms.DialogResult.OK)
+
+            if (vm.DialogResult == System.Windows.Forms.DialogResult.OK)
             {
-                viewModel.SelectedControl.Items = (ui.DataContext as PanelViewModel).Controls.ToList();
-                if (viewModel.SelectedControl is StackButton)
+                revitControl.Items = vm.Controls.ToList();
+                if (revitControl is StackButton)
                 {
-                    foreach (var item in viewModel.SelectedControl.Items)
+                    foreach (var item in revitControl.Items)
                         if (item is IStackItem)
                             (item as IStackItem).CalculateWidth();
+                }
+            }
+            foreach (var control in (ui.DataContext as PanelViewModel).Controls)
+            {
+                if (control is ISplitItem splitItem)
+                {
+                    if (splitItem.SelectedIndex == null)
+                        (((RevitControl)splitItem).DataContext as ControlsContext).CurrentItem = ((RevitControl)splitItem).Items?.FirstOrDefault();
+                    else
+                        (((RevitControl)splitItem).DataContext as ControlsContext).CurrentItem = ((RevitControl)splitItem).Items[splitItem.SelectedIndex.Value];
                 }
             }
         }

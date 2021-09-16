@@ -13,7 +13,7 @@ namespace RevitAddinEditor.Commands
         public TestCommand(ViewModels.EditorViewModel vm) => viewModel = vm;
         public override void Execute(object parameter)
         {
-            System.Windows.Forms.MessageBox.Show(viewModel.Items.Count.ToString());
+            //System.Windows.Forms.MessageBox.Show(viewModel.Items.Count.ToString());
         }
     }
 }

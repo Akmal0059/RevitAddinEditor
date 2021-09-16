@@ -14,6 +14,21 @@
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -34,9 +49,23 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="RevitAddinBase">
       <HintPath>..\..\RevitAddinBase\RevitAddinBase\bin\Debug\RevitAddinBase.dll</HintPath>
+    </Reference>
+    <Reference Include="RevitAPI, Version=21.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>..\packages\Revit.RevitApi.x64.2021.0.0\lib\net48\RevitAPI.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RevitAPIUI, Version=21.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>..\packages\Revit.RevitApiUI.x64.2021.0.0\lib\net48\RevitAPIUI.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -56,17 +85,13 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Commands\AddPanelCommand.cs" />
     <Compile Include="Commands\EditItemsCommands\AddControlCommand.cs" />
     <Compile Include="Commands\Base\CommandBase.cs" />
-    <Compile Include="Commands\EditItemsCommands\CloseCommand.cs" />
+    <Compile Include="Commands\CloseCommand.cs" />
     <Compile Include="Commands\EditItemsCommands\DeleteControlCommand.cs" />
     <Compile Include="Commands\EditItemsCommands\EditItemsCommand.cs" />
     <Compile Include="Commands\EditItemsCommands\MoveCommand.cs" />
@@ -79,6 +104,7 @@
     <Compile Include="Converters.cs" />
     <Compile Include="Models\AddingControl.cs" />
     <Compile Include="ViewModels\EditorViewModel.cs" />
+    <Compile Include="ViewModels\PanelSettingsViewModel.cs" />
     <Compile Include="ViewModels\PanelViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\AddNewControlUI.xaml.cs">
@@ -86,6 +112,9 @@
     </Compile>
     <Compile Include="Views\EditorUI.xaml.cs">
       <DependentUpon>EditorUI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PanelSettingsUI.xaml.cs">
+      <DependentUpon>PanelSettingsUI.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -109,15 +138,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="App.config" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\..\CustomRevitControls\CustomRevitControls\CustomRevitControls.csproj">
       <Project>{a6f4bb0a-2dc7-46e5-a068-a0f3cfbc2776}</Project>
@@ -125,6 +152,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
     <Page Include="Views\AddNewControlUI.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -133,6 +164,25 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\PanelSettingsUI.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Commands\PanelSettingsCommands\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.8">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.8 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

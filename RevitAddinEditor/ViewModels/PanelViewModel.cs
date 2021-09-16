@@ -20,7 +20,7 @@ namespace RevitAddinEditor.ViewModels
         ObservableCollection<RevitControl> controls;
         RevitControl selectedControl;
         AddingControl selectedControlType;
-
+        public List<string> Test { get; set; }
         public List<AddingControl> AddingControls { get; set; }
         public AddingControl SelectedControlType 
         {
@@ -31,7 +31,6 @@ namespace RevitAddinEditor.ViewModels
                 OnPropertyChanged();
             }
         }
-        public DialogResult DialogResult { get; set; }
         public string Name 
         {
             get => name;
@@ -61,20 +60,22 @@ namespace RevitAddinEditor.ViewModels
         }
         public ICommand AddControlCommand { get; set; }
         public ICommand DeleteControlCommand { get; set; }
-        public ICommand SelectImageCommand { get; set; }
+        //public ICommand SelectImageCommand { get; set; }
         public ICommand MoveCommand {  get; set; }
-        public ICommand EditItemsCommand { get; }
+        //public ICommand EditItemsCommand { get; }
         public ICommand CloseCommand { get; }
 
         public PanelViewModel()
         {
             Controls = new ObservableCollection<RevitControl>();
             AddControlCommand = new AddControlCommand(this);
-            SelectImageCommand = new SelectImageCommand(this);
+            //SelectImageCommand = new SelectImageCommand(this);
             DeleteControlCommand = new DeleteControlCommand(this);
             MoveCommand = new MoveCommand(this);
-            EditItemsCommand = new EditItemsCommand(this);
+            //EditItemsCommand = new EditItemsCommand(this);
             CloseCommand = new CloseCommand(this);
+
+            Test = new List<string>() { "1", "2" };
             AddingControls = new List<AddingControl>()
             {
                 new AddingControl("RegularButton", ControlType.Regular),

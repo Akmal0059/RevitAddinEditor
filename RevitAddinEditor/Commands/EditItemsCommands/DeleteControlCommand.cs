@@ -14,6 +14,7 @@ namespace RevitAddinEditor.Commands.EditItemsCommands
 
         public DeleteControlCommand(PanelViewModel vm) => viewModel = vm;
 
+        public override bool CanExecute(object parameter) => viewModel.SelectedControl != null;
         public override void Execute(object parameter)
         {
             viewModel.Controls.Remove(viewModel.SelectedControl);

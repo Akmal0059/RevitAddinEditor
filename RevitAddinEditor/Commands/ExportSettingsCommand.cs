@@ -1,6 +1,10 @@
 ﻿using CustomRevitControls;
+using RevitAddinBase;
+using RevitAddinBase.RevitContainers;
+using RevitAddinBase.RevitControls;
 using RevitAddinEditor.Models;
 using RevitAddinEditor.ViewModels;
+using System.Windows.Forms;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -21,74 +25,31 @@ namespace RevitAddinEditor.Commands
 
         public override void Execute(object parameter)
         {
-            var panel = new RevitPanel();
-            panel.Name = "test";
-            panel.Id = "INDP_TST";
-            panel.Items = new List<RevitControl>(viewModel.Controls);
+            RibbonTab ribbonTab = new RibbonTab("InpadPlugins");
 
-            //Serialize, but ignore companyid
-            var overrides = new XmlAttributeOverrides();
-            var ignoreAttributes = new XmlAttributes();
-            ignoreAttributes.XmlIgnore = true;
-
-            var nonIgnoreAttributes = new XmlAttributes();
-            nonIgnoreAttributes.XmlIgnore = false;
-            var panelProps = panel.GetType().GetProperties();
-            //foreach (var prop in panelProps)
-            //{
-            //    if (prop.Name == "Name" || prop.Name == "Id" || prop.Name == "Items")
-            //        overrides.Add(typeof(RevitPanel), prop.Name, nonIgnoreAttributes);
-            //    else
-            //    {
-            //        overrides.Add(typeof(RevitPanel), prop.Name, ignoreAttributes);
-            //    }
-            //}
-            foreach (var item in panel.Items)
+            foreach (var p in viewModel.Panels)
             {
-                var ItemProps = item.GetType().GetProperties();
-                foreach (var itemProp in ItemProps)
+                var panel = new RibbonPanel();
+                panel.Name = p.Name;
+                panel.Id = p.Id;
+                panel.Text = p.Text;
+                panel.Items = new List<RibbonItemBase>();
+
+                foreach (var item in p.Controls)
                 {
-                    try
-                    {
-                        if (itemProp.Name == "Content" || itemProp.Name == "Items")
-                            overrides.Add(item.GetType(), itemProp.Name, nonIgnoreAttributes);
-                        else
-                        {
-                            overrides.Add(item.GetType(), itemProp.Name, ignoreAttributes);
-                        }
-
-                        //overrides.Add(item.GetType(), itemProp.Name, ignoreAttributes);
-                    }
-                    catch { }
+                    var ribbon = item.GetRevitRibbon();
+                    ribbon.Name = "name";
+                    ribbon.Description = "description";
+                    panel.Items.Add(ribbon);
                 }
+                ribbonTab.Panels.Add(panel);
             }
-
-            // передаем в конструктор тип класса
-            XmlSerializer formatter = new XmlSerializer(typeof(RevitPanel), overrides);
-
-            // получаем поток, куда будем записывать сериализованный объект
-            using (FileStream fs = new FileStream(@"C:\Users\user110\Documents\test\Editor\controls.xml", FileMode.OpenOrCreate))
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.DefaultExt = ".xml";
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                formatter.Serialize(fs, panel);
+                ribbonTab.Serialize(saveFileDialog.FileName);
             }
         }
     }
-    class CustomXml : IXmlSerializable
-    {
-        public XmlSchema GetSchema()
-        {
-            return new XmlSchema();
-        }
-
-        public void ReadXml(XmlReader reader)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void WriteXml(XmlWriter writer)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
 }

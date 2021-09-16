@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RevitAddinEditor", "RevitAd
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomRevitControls", "..\CustomRevitControls\CustomRevitControls\CustomRevitControls.csproj", "{A6F4BB0A-2DC7-46E5-A068-A0F3CFBC2776}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RevitAddinBase", "..\RevitAddinBase\RevitAddinBase\RevitAddinBase.csproj", "{E577B974-7B1A-4252-A97B-C79E39BE5216}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{A6F4BB0A-2DC7-46E5-A068-A0F3CFBC2776}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6F4BB0A-2DC7-46E5-A068-A0F3CFBC2776}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6F4BB0A-2DC7-46E5-A068-A0F3CFBC2776}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E577B974-7B1A-4252-A97B-C79E39BE5216}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E577B974-7B1A-4252-A97B-C79E39BE5216}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E577B974-7B1A-4252-A97B-C79E39BE5216}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E577B974-7B1A-4252-A97B-C79E39BE5216}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

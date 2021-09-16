@@ -22,9 +22,9 @@ namespace RevitAddinEditor.Commands.EditItemsCommands
         {
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.Filter = "Image (*.png)|*.png";
-            if(dialog.ShowDialog() == DialogResult.OK)
-{
-                viewModel.SelectedControl.MainIcon = GetImageSource(dialog.FileName);
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                viewModel.SelectedControl.Icon = GetImageSource(dialog.FileName);
             }
         }
         ImageSource GetImageSource(string path)

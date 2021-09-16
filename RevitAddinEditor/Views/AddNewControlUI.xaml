@@ -21,7 +21,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Column="0">
+        <Grid x:Name="ItemsGrid" Grid.Column="0">
             <TextBlock Text="Items" Margin="10" Foreground="White"
                        VerticalAlignment="Top" HorizontalAlignment="Left"/>
             <ListBox Margin="10,30,5,80" Background="#242424" BorderThickness="0"
@@ -89,6 +89,7 @@
                                 </ControlTemplate>
                             </Setter.Value>
                         </Setter>
+                        <Setter Property="Margin" Value="0,2,0,2"/>
                     </Style>
                 </ListBox.ItemContainerStyle>
                 <!--<StackPanel Orientation="Horizontal">
@@ -116,7 +117,7 @@
             <Button x:Name="Btn_Cancel" VerticalAlignment="Bottom" 
                     HorizontalAlignment="Right" Height="30" Width="70" 
                     Margin="0,0,10,10"  Content="Cancel" FontSize="12"
-                    Command="{Binding CloseCommand}">
+                    Command="{Binding CloseCommand}" Tag="0">
                 <Button.CommandParameter>
                     <MultiBinding Converter="{StaticResource MultiParamConverter}">
                         <Binding ElementName="Btn_Cancel"/>
@@ -126,7 +127,7 @@
             </Button>
             <Button x:Name="Btn_Ok" VerticalAlignment="Bottom" HorizontalAlignment="Right" 
                     Height="30" Width="70" Margin="0,0,85,10" Content="OK"
-                    FontSize="12" Command="{Binding CloseCommand}">
+                    FontSize="12" Command="{Binding CloseCommand}" Tag="1">
                 <Button.CommandParameter>
                     <MultiBinding Converter="{StaticResource MultiParamConverter}">
                         <Binding ElementName="Btn_Ok"/>

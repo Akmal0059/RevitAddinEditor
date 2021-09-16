@@ -16,37 +16,26 @@ using System.Drawing;
 using CustomRevitControls;
 using System.Collections.ObjectModel;
 using Control = System.Windows.Controls.Control;
+using RevitAddinEditor.Commands.EditItemsCommands;
 
 namespace RevitAddinEditor.ViewModels
 {
     public class EditorViewModel : ViewModelBase
     {
         List<string> revitItems;
-        List<RevitPanel> panels;
-        List<SplitButtonItem> items;
-        RevitControl selectedControl;
-        ObservableCollection<RevitControl> controls;
+        ObservableCollection<RevitPanel> panels;
+        RevitPanel selectedPanel;
 
-        public ObservableCollection<RevitControl> Controls
+        public RevitPanel SelectedPanel
         {
-            get => controls;
+            get => selectedPanel;
             set
             {
-                controls = value;
+                selectedPanel = value;
                 OnPropertyChanged();
             }
         }
-        public RevitControl SelectedControl
-        {
-            get => selectedControl;
-            set
-            {
-                selectedControl = value;
-                OnPropertyChanged();
-            }
-        }
-        public RevitPanel SelectedPanel { get; set; }
-        public List<RevitPanel> Panels
+        public ObservableCollection<RevitPanel> Panels
         {
             get => panels;
             set
@@ -64,106 +53,25 @@ namespace RevitAddinEditor.ViewModels
                 OnPropertyChanged();
             }
         }
-        public List<SplitButtonItem> Items
-        {
-            get => items;
-            set
-            {
-                items = value;
-                OnPropertyChanged();
-            }
-        }
+
         public ICommand SetAssemblyCommand { get; }
         public ICommand OpenItemsEditorCommand { get; }
         public ICommand ImportSettings { get; }
         public ICommand ExportSettings { get; }
         public ICommand TestCmd { get; }
+        public ICommand AddPanelCommand { get; }
 
         public EditorViewModel()
         {
-            revitItems = new List<string>();
             SetAssemblyCommand = new SetAssemblyCommand(this);
             OpenItemsEditorCommand = new OpenItemsEditorCommand(this);
-            //DeleteControlCommand = new DeleteControlCommand(this);
-            TestCmd = new TestCommand(this);
             ImportSettings = new ImportSettingsCommand(this);
             ExportSettings = new ExportSettingsCommand(this);
-            Controls = new ObservableCollection<RevitControl>();
-            //AddSplitItem();
-            //AddPulldown();
-            AddStack();
+            AddPanelCommand = new AddPanelCommand(this);
+
+            revitItems = new List<string>();
+            Panels = new ObservableCollection<RevitPanel>();
         }
-
-        void AddSplitItem()
-        {
-            //SplitItem spb = new SplitItem();
-            //spb.Content = "SplitBtn";
-            //spb.CurrentIndex = 0;
-            ////SplitItem spb2 = new SplitItem();
-            //var items = new List<SplitButtonItem>();
-            //items.Add(new SplitButtonItem("111", @"F:\Apps\design.png"));
-            //items.Add(new SplitButtonItem("222", @"F:\Apps\protect.png"));
-            //items.Add(new SplitButtonItem("333", @"F:\Apps\design.png"));
-            //items.Add(new SplitButtonItem("444", @"F:\Apps\protect.png"));
-            //spb.Items = items;
-            ////spb2.Items = items;
-            //Controls.Add(spb);
-            ////Controls.Add(spb2);
-        }
-        void AddPulldown()
-        {
-            //PulldownButton pb = new PulldownButton();
-            //pb.MainIcon = GetImageSource(@"F:\Apps\design.png");
-            //pb.Content = "Pulldown";
-            //var items = new List<PulldownItem>();
-            //items.Add(new PulldownItem("111", @"F:\Apps\design.png"));
-            //items.Add(new PulldownItem("222", @"F:\Apps\protect.png"));
-            //items.Add(new PulldownItem("333", @"F:\Apps\design.png"));
-            //items.Add(new PulldownItem("444", @"F:\Apps\protect.png"));
-            //pb.Items = items;
-            //Controls.Add(pb);
-        }
-        void AddStack()
-        {
-            StackButton sb = new StackButton();
-            sb.Content = "sb test";
-            StackedPulldown pb = new StackedPulldown();
-            //pb.MainIcon = GetImageSource(@"F:\Apps\design.png");
-            pb.Content = "StPulldown";
-            var items = new List<RevitControl>();
-            items.Add(new StackedRegularButton() { Content = "123" });
-            items.Add(new StackedRegularButton() { Content = "2225555" });
-            items.Add(new StackedRegularButton() { Content = "333" });
-            items.Add(new StackedRegularButton() { Content = "444" });
-            pb.Items = items;
-            pb.CalculateWidth();
-            
-            StackedSplitItem spb = new StackedSplitItem();
-            spb.Content = "StSplitItem";
-            //SplitItem spb2 = new SplitItem();
-            var items2 = new List<RevitControl>();
-            //items2.Add(new SplitButtonItem("111", @"F:\Apps\design.png"));
-            //items2.Add(new SplitButtonItem("222121321", @"F:\Apps\protect.png"));
-            //items2.Add(new SplitButtonItem("333", @"F:\Apps\design.png"));
-            //items2.Add(new SplitButtonItem("444", @"F:\Apps\protect.png"));
-            spb.Items = items2;
-            spb.CalculateWidth();
-
-            StackedRegularButton si = new StackedRegularButton() { Content = "Stack btn" };
-            //si.MainIcon = GetImageSource(@"F:\Apps\protect.png");
-            si.CalculateWidth();
-
-
-            TextBoxItem tbi = new TextBoxItem();
-            tbi.TextBoxWidth = 120;
-
-            sb.Items = new List<RevitControl> { pb, spb, si };
-            sb.Properties.Add(new PropertyItem(sb, "Content", new System.Windows.Controls.TextBox()));
-            sb.Properties.Add(new PropertyItem(sb, "MainIcon", new System.Windows.Controls.TextBox()));
-            sb.Properties.Add(new PropertyItem(sb, "Items", new System.Windows.Controls.Button(), new OpenItemsEditorCommand(this)));
-            Controls.Add(sb);
-        }
-
         ImageSource GetImageSource(string path)
         {
             var bitmap = new Bitmap(path);

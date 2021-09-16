@@ -51,8 +51,12 @@ namespace RevitAddinEditor.Commands.EditItemsCommands
                     break;
             }
 
-            viewModel.Controls.Add(control);
-            viewModel.SelectedControl = control;
+            if (control != null)
+            {
+                control.SetProperties(command: new EditItemsCommand(control));
+                viewModel.Controls.Add(control);
+                viewModel.SelectedControl = control;
+            }
         }
     }
 }
