@@ -36,8 +36,8 @@ namespace RevitAddinEditor.Commands
             Assembly assembly = Assembly.LoadFrom(@"C:\Users\user110\source\repos\testAddin\testAddin\bin\Debug via Revit Add-In Manager\RevitAddin.dll");
             try
             {
-                var inst1 = assembly.CreateInstance("testAddin.ExtCommand");
-                var inst2 = assembly.CreateInstance("testAddin.Command");
+                //var inst1 = assembly.CreateInstance("testAddin.ExtCommand");
+                //var inst2 = assembly.CreateInstance("testAddin.Command");
 
                 var types = assembly.GetTypes();
 

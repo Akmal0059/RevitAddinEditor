@@ -78,6 +78,7 @@ namespace RevitAddinEditor.ViewModels
             Test = new List<string>() { "1", "2" };
             AddingControls = new List<AddingControl>()
             {
+                new AddingControl("Separator", ControlType.Separator),
                 new AddingControl("RegularButton", ControlType.Regular),
                 new AddingControl("PulldownButton", ControlType.Pulldown),
                 new AddingControl("SplitButton", ControlType.SplitButton),

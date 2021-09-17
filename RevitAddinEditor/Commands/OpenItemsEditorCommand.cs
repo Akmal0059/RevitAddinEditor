@@ -23,7 +23,8 @@ namespace RevitAddinEditor.Commands
             foreach(var addindControl in (ui.DataContext as PanelViewModel).AddingControls)
             {
                 if (addindControl.Type == ControlType.Regular || addindControl.Type == ControlType.StackButton ||
-                    addindControl.Type == ControlType.SplitButton || addindControl.Type == ControlType.Pulldown)
+                    addindControl.Type == ControlType.SplitButton || addindControl.Type == ControlType.Pulldown ||
+                    addindControl.Type == ControlType.Separator)
                     addindControl.Visible = true;
             }
             ui.ShowDialog();

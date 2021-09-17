@@ -23,6 +23,9 @@ namespace RevitAddinEditor.Commands.EditItemsCommands
 
             switch (viewModel.SelectedControlType.Type)
             {
+                case ControlType.Separator:
+                    control = new CustomRevitControls.Separator();
+                    break;
                 case ControlType.Regular:
                     control = new RegularButton();
                     break;

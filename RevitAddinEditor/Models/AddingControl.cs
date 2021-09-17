@@ -21,6 +21,7 @@ namespace RevitAddinEditor.Models
     }
     public enum ControlType
     {
+        Separator = -1,
         Regular = 0,
         Pulldown = 1,
         SplitButton = 2,
