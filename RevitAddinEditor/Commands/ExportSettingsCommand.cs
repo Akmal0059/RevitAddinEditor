@@ -38,8 +38,6 @@ namespace RevitAddinEditor.Commands
                 foreach (var item in p.Controls)
                 {
                     var ribbon = item.GetRevitRibbon();
-                    ribbon.Name = "name";
-                    ribbon.Description = "description";
                     panel.Items.Add(ribbon);
                 }
                 ribbonTab.Panels.Add(panel);

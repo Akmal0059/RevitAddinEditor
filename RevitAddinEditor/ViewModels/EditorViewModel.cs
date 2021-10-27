@@ -61,14 +61,18 @@ namespace RevitAddinEditor.ViewModels
         public ICommand TestCmd { get; }
         public ICommand AddPanelCommand { get; }
         public ICommand RemovePanelCommand { get; }
+        public ICommand CreateResxFileCommand {  get; }
+        public ICommand EditPanelCommand { get; }
 
         public EditorViewModel()
         {
-            SetAssemblyCommand = new SetAssemblyCommand(this);
+            //SetAssemblyCommand = new SetAssemblyCommand(this);
+            CreateResxFileCommand = new CreateResxFilesCommand(this);
             OpenItemsEditorCommand = new OpenItemsEditorCommand(this);
             ImportSettings = new ImportSettingsCommand(this);
             ExportSettings = new ExportSettingsCommand(this);
             AddPanelCommand = new AddPanelCommand(this);
+            EditPanelCommand = new EditPanelCommand(this);
             RemovePanelCommand = new RemovePanelCommand(this);
 
             revitItems = new List<string>();

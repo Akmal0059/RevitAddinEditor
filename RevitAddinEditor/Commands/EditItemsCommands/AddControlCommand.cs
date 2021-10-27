@@ -25,6 +25,7 @@ namespace RevitAddinEditor.Commands.EditItemsCommands
             {
                 case ControlType.Separator:
                     control = new CustomRevitControls.Separator();
+                    control.IsEnabled = false;
                     break;
                 case ControlType.Regular:
                     control = new RegularButton();

@@ -88,18 +88,20 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Commands\AddPanelCommand.cs" />
+    <Compile Include="Commands\PanelSettingsCommands\AddPanelCommand.cs" />
     <Compile Include="Commands\EditItemsCommands\AddControlCommand.cs" />
     <Compile Include="Commands\Base\CommandBase.cs" />
     <Compile Include="Commands\CloseCommand.cs" />
+    <Compile Include="Commands\EditItemsCommands\CreateResxFilesCommand.cs" />
     <Compile Include="Commands\EditItemsCommands\DeleteControlCommand.cs" />
     <Compile Include="Commands\EditItemsCommands\EditItemsCommand.cs" />
     <Compile Include="Commands\EditItemsCommands\MoveCommand.cs" />
+    <Compile Include="Commands\PanelSettingsCommands\EditPanelCommand.cs" />
     <Compile Include="Commands\ExportSettingsCommand.cs" />
     <Compile Include="Commands\ImportSettingsCommand.cs" />
     <Compile Include="Commands\OpenItemsEditorCommand.cs" />
     <Compile Include="Commands\EditItemsCommands\SelectImageCommand.cs" />
-    <Compile Include="Commands\RemovePanelCommand.cs" />
+    <Compile Include="Commands\PanelSettingsCommands\RemovePanelCommand.cs" />
     <Compile Include="Commands\SetAssemblyCommand.cs" />
     <Compile Include="Commands\TestCommand.cs" />
     <Compile Include="Converters.cs" />
@@ -113,6 +115,9 @@
     </Compile>
     <Compile Include="Views\EditorUI.xaml.cs">
       <DependentUpon>EditorUI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ImportUI.xaml.cs">
+      <DependentUpon>ImportUI.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PanelSettingsUI.xaml.cs">
       <DependentUpon>PanelSettingsUI.xaml</DependentUpon>
@@ -129,6 +134,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -138,7 +144,9 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.ru.resx" />
     <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -165,14 +173,16 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\ImportUI.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\PanelSettingsUI.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Commands\PanelSettingsCommands\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8">
       <Visible>False</Visible>
@@ -184,6 +194,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\russia.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\united-kingdom.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
