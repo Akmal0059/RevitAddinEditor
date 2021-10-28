@@ -87,6 +87,8 @@ namespace RevitAddinEditor.ViewModels
                 new AddingControl("StackedSplitItem", ControlType.StackedSplitItem),
                 new AddingControl("StackedRegularButton", ControlType.StackedRegButton),
                 new AddingControl("TextBoxItem", ControlType.TextBox),
+                new AddingControl("Label", ControlType.Textblock),
+                new AddingControl("Checkbox", ControlType.Checkbox),
             };
         }
     }

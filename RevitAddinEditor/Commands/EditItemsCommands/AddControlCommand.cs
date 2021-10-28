@@ -51,6 +51,13 @@ namespace RevitAddinEditor.Commands.EditItemsCommands
                 case ControlType.TextBox:
                     control = new TextBoxItem();
                     break;
+                case ControlType.Textblock:
+                    control = new Textblock();
+                    control.IsEnabled = false;
+                    break;
+                case ControlType.Checkbox:
+                    control = new Checkbox();
+                    break;
                 default:
                     break;
             }

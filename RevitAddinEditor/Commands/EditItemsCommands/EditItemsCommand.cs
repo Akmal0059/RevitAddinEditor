@@ -47,7 +47,8 @@ namespace RevitAddinEditor.Commands.EditItemsCommands
                 foreach (var addindControl in vm.AddingControls)
                 {
                     if (addindControl.Type == ControlType.TextBox || addindControl.Type == ControlType.StackedSplitItem ||
-                        addindControl.Type == ControlType.StackedPulldown || addindControl.Type == ControlType.StackedRegButton)
+                        addindControl.Type == ControlType.StackedPulldown || addindControl.Type == ControlType.StackedRegButton ||
+                        addindControl.Type == ControlType.Textblock || addindControl.Type == ControlType.Checkbox)
                         addindControl.Visible = true;
                 }
             }

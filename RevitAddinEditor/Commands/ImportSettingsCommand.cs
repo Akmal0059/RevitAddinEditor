@@ -36,7 +36,7 @@ namespace RevitAddinEditor.Commands
                 // string resources
                 using (FileStream fs = new FileStream(importUI.TB_STRRESFilePath.Text, FileMode.OpenOrCreate, FileAccess.ReadWrite))
                 {
-                    ResourceReader rr = new ResourceReader(fs);
+                    ResXResourceReader rr = new ResXResourceReader(fs);
                     foreach (DictionaryEntry item in rr)
                     {
                         resDict.Add((string)item.Key, item.Value);
@@ -47,7 +47,7 @@ namespace RevitAddinEditor.Commands
                 // media resources
                 using (FileStream fs = new FileStream(importUI.TB_MEDIARESFilePath.Text, FileMode.OpenOrCreate, FileAccess.ReadWrite))
                 {
-                    ResourceReader rr = new ResourceReader(fs);
+                    ResXResourceReader rr = new ResXResourceReader(fs);
                     foreach (DictionaryEntry item in rr)
                     {
                         resDict.Add((string)item.Key, item.Value);

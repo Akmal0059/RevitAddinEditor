@@ -29,6 +29,9 @@ namespace RevitAddinEditor.Models
         StackedPulldown = 4,
         StackedSplitItem = 5,
         StackedRegButton = 6,
-        TextBox = 7
+        TextBox = 7,
+        Textblock = 8,
+        Combobox = 9,
+        Checkbox = 10
     }
 }

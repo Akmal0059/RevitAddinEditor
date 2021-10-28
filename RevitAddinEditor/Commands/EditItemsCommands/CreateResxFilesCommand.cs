@@ -32,13 +32,13 @@ namespace RevitAddinEditor.Commands.EditItemsCommands
             string outputFolder = Path.GetDirectoryName(ofd.FileName);
 
             if ((string)parameter == "img")
-                SaveMediaResources($@"{outputFolder}\InpadPlugins.Images.resources");
+                SaveMediaResources($@"{outputFolder}\InpadPlugins.Media.resx");
             else
             {
                 if (!Directory.Exists($@"{outputFolder}\{(string)parameter}"))
                     Directory.CreateDirectory($@"{outputFolder}\{(string)parameter}");
 
-                SaveStringResources($@"{outputFolder}\{(string)parameter}\InpadPlugins.resources");
+                SaveStringResources($@"{outputFolder}\{(string)parameter}\InpadPlugins.resx");
             }
         }
 
@@ -46,7 +46,7 @@ namespace RevitAddinEditor.Commands.EditItemsCommands
         {
             using (FileStream fs = new FileStream(path, FileMode.Create, FileAccess.Write))
             {
-                ResourceWriter rw = new ResourceWriter(fs);
+                ResXResourceWriter rw = new ResXResourceWriter(fs);
                 foreach (var pnl in viewModel.Panels)
                 {
                     foreach (var rItem in pnl.Controls)
@@ -59,7 +59,7 @@ namespace RevitAddinEditor.Commands.EditItemsCommands
         {
             using (FileStream fs = new FileStream(path, FileMode.Create, FileAccess.Write))
             {
-                ResourceWriter rw = new ResourceWriter(fs);
+                ResXResourceWriter rw = new ResXResourceWriter(fs);
                 foreach (var pnl in viewModel.Panels)
                 {
                     foreach (var rItem in pnl.Controls)
