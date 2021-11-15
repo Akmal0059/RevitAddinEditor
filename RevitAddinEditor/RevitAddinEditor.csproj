@@ -88,6 +88,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Commands\OpenSlideOutCommand.cs" />
     <Compile Include="Commands\PanelSettingsCommands\AddPanelCommand.cs" />
     <Compile Include="Commands\EditItemsCommands\AddControlCommand.cs" />
     <Compile Include="Commands\Base\CommandBase.cs" />
@@ -103,12 +104,17 @@
     <Compile Include="Commands\EditItemsCommands\SelectImageCommand.cs" />
     <Compile Include="Commands\PanelSettingsCommands\RemovePanelCommand.cs" />
     <Compile Include="Commands\SetAssemblyCommand.cs" />
+    <Compile Include="Commands\TabSettingsCommands\AddTabCommand.cs" />
+    <Compile Include="Commands\TabSettingsCommands\EditTabCommand.cs" />
+    <Compile Include="Commands\TabSettingsCommands\RemoveTabCommand.cs" />
     <Compile Include="Commands\TestCommand.cs" />
     <Compile Include="Converters.cs" />
     <Compile Include="Models\AddingControl.cs" />
     <Compile Include="ViewModels\EditorViewModel.cs" />
     <Compile Include="ViewModels\PanelSettingsViewModel.cs" />
     <Compile Include="ViewModels\PanelViewModel.cs" />
+    <Compile Include="ViewModels\SlideOutViewModel.cs" />
+    <Compile Include="ViewModels\TabSettingsViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\AddNewControlUI.xaml.cs">
       <DependentUpon>AddNewControlUI.xaml</DependentUpon>
@@ -122,11 +128,15 @@
     <Compile Include="Views\PanelSettingsUI.xaml.cs">
       <DependentUpon>PanelSettingsUI.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SlideOutUI.xaml.cs">
+      <DependentUpon>SlideOutUI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TabSettingsUI.xaml.cs">
+      <DependentUpon>TabSettingsUI.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\RevitExternalApp.cs" />
-    <Compile Include="Models\RevitPanel.cs" />
-    <Compile Include="Models\RevitTab.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -181,8 +191,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\SlideOutUI.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TabSettingsUI.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Commands\SlideOutCommands\" />
+  </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8">
       <Visible>False</Visible>

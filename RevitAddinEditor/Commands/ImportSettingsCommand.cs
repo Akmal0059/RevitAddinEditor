@@ -12,6 +12,7 @@ using RevitAddinEditor.Views;
 using System.IO;
 using System.Resources;
 using System.Collections;
+using System.Xml.Serialization;
 
 namespace RevitAddinEditor.Commands
 {
@@ -54,24 +55,22 @@ namespace RevitAddinEditor.Commands
                     }
                 }
 
-                var tabs = RibbonTab.Deserialize(importUI.TB_XMLFilePath.Text);
-                List<RevitPanel> panels = new List<RevitPanel>();
-                foreach (var p in tabs.Panels)
+                var ribbonTabs = Deserialize(importUI.TB_XMLFilePath.Text);
+                List<RevitTab> revitTabs = new List<RevitTab>();
+                foreach (var t in ribbonTabs)
                 {
-                    RevitPanel panel = new RevitPanel();
-                    panel.Name = p.Name;
-                    panel.Id = p.Id;
-                    panel.Text = p.Text;
-                    foreach (var c in p.Items)
-                    {
-                        var revitControl = RevitControl.GetRevitControl(c, resDict);
+                    RevitTab revitTab = new RevitTab(t, resDict);
 
-                        SetPropeties(revitControl);
-                        panel.Controls.Add(revitControl);
+                    foreach (var panel in revitTab.Panels)
+                    {
+                        foreach (var control in panel.Controls)
+                        {
+                            SetPropeties(control);
+                        }
                     }
-                    panels.Add(panel);
+                    revitTabs.Add(revitTab);
                 }
-                viewModel.Panels = new ObservableCollection<RevitPanel>(panels);
+                viewModel.Tabs = new ObservableCollection<RevitTab>(revitTabs);
 
             }
         }
@@ -98,6 +97,17 @@ namespace RevitAddinEditor.Commands
                     (((RevitControl)splitItem).DataContext as ControlsContext).CurrentItem = ((RevitControl)splitItem).Items[splitItem.SelectedIndex.Value];
             }
 
+        }
+
+        RibbonTab[] Deserialize(string path)
+        {
+            RibbonTab[] tabs = null;
+            XmlSerializer formatter = new XmlSerializer(typeof(RibbonTab[]));
+            using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate))
+            {
+                tabs = (RibbonTab[])formatter.Deserialize(fs);
+            }
+            return tabs;
         }
     }
 }

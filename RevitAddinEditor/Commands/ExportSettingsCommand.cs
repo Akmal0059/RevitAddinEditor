@@ -25,28 +25,29 @@ namespace RevitAddinEditor.Commands
 
         public override void Execute(object parameter)
         {
-            RibbonTab ribbonTab = new RibbonTab("InpadPlugins");
 
-            foreach (var p in viewModel.Panels)
+            List<RibbonTab> tabs = new List<RibbonTab>();
+            foreach (var tab in viewModel.Tabs)
             {
-                var panel = new RibbonPanel();
-                panel.Name = p.Name;
-                panel.Id = p.Id;
-                panel.Text = p.Text;
-                panel.Items = new List<RibbonItemBase>();
-
-                foreach (var item in p.Controls)
-                {
-                    var ribbon = item.GetRevitRibbon();
-                    panel.Items.Add(ribbon);
-                }
-                ribbonTab.Panels.Add(panel);
+                tabs.Add(tab.GetRibbonTab());
             }
+
+            Serialize(tabs);
+        }
+
+        void Serialize(List<RibbonTab> tabs)
+        {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.DefaultExt = ".xml";
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                ribbonTab.Serialize(saveFileDialog.FileName);
+                XmlSerializer formatter = new XmlSerializer(typeof(List<RibbonTab>));
+
+                // получаем поток, куда будем записывать сериализованный объект
+                using (FileStream fs = new FileStream(saveFileDialog.FileName, FileMode.OpenOrCreate))
+                {
+                    formatter.Serialize(fs, tabs);
+                }
             }
         }
     }

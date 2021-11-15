@@ -5,6 +5,7 @@ using RevitAddinEditor.ViewModels;
 using RevitAddinEditor.Views;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,7 +30,10 @@ namespace RevitAddinEditor.Commands
             }
             ui.ShowDialog();
             if ((ui.DataContext as PanelViewModel).DialogResult == System.Windows.Forms.DialogResult.OK)
+            {
                 viewModel.SelectedPanel.Controls = (ui.DataContext as PanelViewModel).Controls;
+                viewModel.NonSlideOuts = new ObservableCollection<RevitControl>(viewModel.SelectedPanel.Controls.Where(x => !x.IsSlideOut));
+            }
             ui.UpdateLayout();
             foreach(var control in (ui.DataContext as PanelViewModel).Controls)
             {

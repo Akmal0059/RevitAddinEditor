@@ -19,7 +19,7 @@ namespace RevitAddinEditor.Commands
 
         public override void Execute(object parameter)
         {
-            viewModel.Panels.Remove(viewModel.SelectedPanel);
+            viewModel.SelectedTab.Panels.Remove(viewModel.SelectedPanel);
         }
     }
 }

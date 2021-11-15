@@ -1,4 +1,5 @@
-﻿using RevitAddinEditor.Models;
+﻿using CustomRevitControls;
+using RevitAddinEditor.Models;
 using RevitAddinEditor.ViewModels;
 using RevitAddinEditor.Views;
 using System;
@@ -15,6 +16,8 @@ namespace RevitAddinEditor.Commands
 
         public AddPanelCommand(EditorViewModel vm) => viewModel = vm;
 
+        public override bool CanExecute(object parameter) => viewModel.SelectedTab != null;
+
         public override void Execute(object parameter)
         {
             RevitPanel panel = new RevitPanel();
@@ -26,8 +29,10 @@ namespace RevitAddinEditor.Commands
                 panel.Id = psViewModel.Id;
                 panel.Name = psViewModel.Name;
                 panel.Text = psViewModel.Text;
-                viewModel.Panels.Add(panel);
+                panel.HasArrowButton = psViewModel.HasArrowButton;
+                viewModel.SelectedTab.Panels.Add(panel);
             }
+            viewModel.SelectedPanel = panel;
         }
     }
 }

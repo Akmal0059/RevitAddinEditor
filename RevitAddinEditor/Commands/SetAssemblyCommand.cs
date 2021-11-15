@@ -1,6 +1,7 @@
 ﻿using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using CustomRevitControls.Interfaces;
+using RevitAddinBase.RevitCommands;
 using RevitAddinEditor.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -29,11 +30,12 @@ namespace RevitAddinEditor.Commands
             //if (openFileDialog.ShowDialog() == DialogResult.OK)
             //{
             var dll = File.ReadAllBytes(@"C:\Users\user110\source\repos\testAddin\testAddin\bin\Debug via Revit Add-In Manager\RevitAddin.dll");
+            var dll2 = File.ReadAllBytes(@"C:\Users\user110\source\repos\RevitPlugins (prod)\InpadPlugins\bin\Debug2\INPDPlugins.dll");
             var pdb = File.ReadAllBytes(@"C:\Users\user110\source\repos\testAddin\testAddin\bin\Debug via Revit Add-In Manager\RevitAddin.pdb");
             Evidence evidence = new Evidence();
             //Assembly assembly = Assembly.Load(dll, pdb, System.Security.SecurityContextSource.CurrentAssembly);
 
-            Assembly assembly = Assembly.LoadFrom(@"C:\Users\user110\source\repos\testAddin\testAddin\bin\Debug via Revit Add-In Manager\RevitAddin.dll");
+            Assembly assembly = Assembly.LoadFrom(@"C:\Users\user110\source\repos\BoxChecker\BoxChecker\bin\Debug via Revit Add-In Manager\BoxChecker.dll");
             try
             {
                 //var inst1 = assembly.CreateInstance("testAddin.ExtCommand");
@@ -45,9 +47,9 @@ namespace RevitAddinEditor.Commands
             }
             catch (ReflectionTypeLoadException e)
             {
-                var types = e.Types;
+                var types = e.Types.OrderBy(x=>x?.Name).ToList();
 
-                viewModel.RevitItems = types.Where(x => IsRevitCommand(x)).Select(x => x?.Name).ToList();
+                var commands = types.Where(x => IsRevitCommand(x)).Select(x => x?.Name).ToList();
                 StringBuilder sb = new StringBuilder();
                 foreach (Exception exSub in e.LoaderExceptions)
                 {
@@ -94,12 +96,8 @@ namespace RevitAddinEditor.Commands
             {
                 if (type == null)
                     return false;
-                if (type.Name.Contains("NodeManager"))
-                {
 
-                }
-                var i = type.GetInterface("Autodesk.Revit.UI.IExternalCommand");
-                result = type != null && i != null;
+                result = type.IsSubclassOf(typeof(SingletonCommand));
             }
             catch { }
 

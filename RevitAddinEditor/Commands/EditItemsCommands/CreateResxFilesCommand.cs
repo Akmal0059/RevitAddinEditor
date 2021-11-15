@@ -23,22 +23,19 @@ namespace RevitAddinEditor.Commands.EditItemsCommands
 
         public override void Execute(object parameter)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.ValidateNames = false;
-            ofd.CheckFileExists = false;
-            ofd.CheckPathExists = true;
-            ofd.FileName = "Выберите папку";
-            ofd.ShowDialog();
-            string outputFolder = Path.GetDirectoryName(ofd.FileName);
-
-            if ((string)parameter == "img")
-                SaveMediaResources($@"{outputFolder}\InpadPlugins.Media.resx");
-            else
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.DefaultExt = ".resx";
+            //OpenFileDialog ofd = new OpenFileDialog();
+            //ofd.ValidateNames = false;
+            //ofd.CheckFileExists = false;
+            //ofd.CheckPathExists = true;
+            //ofd.FileName = "Выберите папку";
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                if (!Directory.Exists($@"{outputFolder}\{(string)parameter}"))
-                    Directory.CreateDirectory($@"{outputFolder}\{(string)parameter}");
-
-                SaveStringResources($@"{outputFolder}\{(string)parameter}\InpadPlugins.resx");
+                if ((string)parameter == "img")
+                    SaveMediaResources(saveFileDialog.FileName);
+                else
+                    SaveStringResources(saveFileDialog.FileName);
             }
         }
 
@@ -47,7 +44,7 @@ namespace RevitAddinEditor.Commands.EditItemsCommands
             using (FileStream fs = new FileStream(path, FileMode.Create, FileAccess.Write))
             {
                 ResXResourceWriter rw = new ResXResourceWriter(fs);
-                foreach (var pnl in viewModel.Panels)
+                foreach (var pnl in viewModel.SelectedTab.Panels)
                 {
                     foreach (var rItem in pnl.Controls)
                         rItem.AddStringResources(rw);
@@ -60,7 +57,7 @@ namespace RevitAddinEditor.Commands.EditItemsCommands
             using (FileStream fs = new FileStream(path, FileMode.Create, FileAccess.Write))
             {
                 ResXResourceWriter rw = new ResXResourceWriter(fs);
-                foreach (var pnl in viewModel.Panels)
+                foreach (var pnl in viewModel.SelectedTab.Panels)
                 {
                     foreach (var rItem in pnl.Controls)
                         rItem.AddMediaResources(rw);

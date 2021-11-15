@@ -38,7 +38,7 @@ namespace RevitAddinEditor.Views
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Filter = "resources Files |*.resources";
+            dialog.Filter = "resources Files |*.resx";
             if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 TB_STRRESFilePath.Text = dialog.FileName;
@@ -47,7 +47,7 @@ namespace RevitAddinEditor.Views
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Filter = "resources Files |*.resources";
+            dialog.Filter = "resources Files |*.resx";
             if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 TB_MEDIARESFilePath.Text = dialog.FileName;

@@ -49,6 +49,8 @@ namespace RevitAddinEditor.ViewModels
                 OnPropertyChanged();
             }
         }
+        public ObservableCollection<RevitControl> NonSlideOuts => new ObservableCollection<RevitControl>(Controls.Where(x => !x.IsSlideOut));
+
         public RevitControl SelectedControl 
         {
             get => selectedControl;

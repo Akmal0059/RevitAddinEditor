@@ -24,23 +24,8 @@ namespace RevitAddinEditor.Commands.EditItemsCommands
             dialog.Filter = "Image (*.png)|*.png";
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                viewModel.SelectedControl.Icon = GetImageSource(dialog.FileName);
+                viewModel.SelectedControl.Icon = GetBitmapSource(dialog.FileName);
             }
-        }
-        ImageSource GetImageSource(string path)
-        {
-            var bitmap = new Bitmap(path);
-            var imageSource = new BitmapImage();
-            using (MemoryStream memory = new MemoryStream())
-            {
-                bitmap.Save(memory, System.Drawing.Imaging.ImageFormat.Png);
-                memory.Position = 0;
-                imageSource.BeginInit();
-                imageSource.StreamSource = memory;
-                imageSource.CacheOption = BitmapCacheOption.OnLoad;
-                imageSource.EndInit();
-            }
-            return imageSource;
         }
     }
 }

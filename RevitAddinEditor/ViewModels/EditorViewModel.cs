@@ -17,30 +17,65 @@ using CustomRevitControls;
 using System.Collections.ObjectModel;
 using Control = System.Windows.Controls.Control;
 using RevitAddinEditor.Commands.EditItemsCommands;
+using RevitAddinEditor.Commands.TabSettingsCommands;
 
 namespace RevitAddinEditor.ViewModels
 {
     public class EditorViewModel : ViewModelBase
     {
         List<string> revitItems;
-        ObservableCollection<RevitPanel> panels;
+        //ObservableCollection<RevitPanel> panels;
         RevitPanel selectedPanel;
+        ObservableCollection<RevitTab> tabs;
+        ObservableCollection<RevitControl> nonSlideOuts;
+        RevitTab selectedTab;
 
+        public RevitTab SelectedTab 
+        {
+            get => selectedTab;
+            set
+            {
+                selectedTab = value;
+                OnPropertyChanged();
+            }
+        }
+        public ObservableCollection<RevitTab> Tabs 
+        {
+            get => tabs;
+            set
+            {
+                tabs = value;
+                OnPropertyChanged();
+            }
+        }
         public RevitPanel SelectedPanel
         {
             get => selectedPanel;
             set
             {
                 selectedPanel = value;
+                if (selectedPanel != null)
+                    NonSlideOuts = new ObservableCollection<RevitControl>(selectedPanel.Controls.Where(x => !x.IsSlideOut));
+                else 
+                    NonSlideOuts = new ObservableCollection<RevitControl>();
                 OnPropertyChanged();
             }
         }
-        public ObservableCollection<RevitPanel> Panels
+        //public ObservableCollection<RevitPanel> Panels
+        //{
+        //    get => panels;
+        //    set
+        //    {
+        //        panels = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
+        public ObservableCollection<RevitControl> NonSlideOuts
         {
-            get => panels;
+            get => nonSlideOuts;
             set
             {
-                panels = value;
+                nonSlideOuts = value;
                 OnPropertyChanged();
             }
         }
@@ -61,12 +96,16 @@ namespace RevitAddinEditor.ViewModels
         public ICommand TestCmd { get; }
         public ICommand AddPanelCommand { get; }
         public ICommand RemovePanelCommand { get; }
-        public ICommand CreateResxFileCommand {  get; }
         public ICommand EditPanelCommand { get; }
+        public ICommand CreateResxFileCommand {  get; }
+        public ICommand OpenSlideOutCommand { get; }
+        public ICommand AddTabCommand { get; }
+        public ICommand RemoveTabCommand { get; }
+        public ICommand EditTabCommand { get; }
 
         public EditorViewModel()
         {
-            //SetAssemblyCommand = new SetAssemblyCommand(this);
+            SetAssemblyCommand = new SetAssemblyCommand(this);
             CreateResxFileCommand = new CreateResxFilesCommand(this);
             OpenItemsEditorCommand = new OpenItemsEditorCommand(this);
             ImportSettings = new ImportSettingsCommand(this);
@@ -74,9 +113,16 @@ namespace RevitAddinEditor.ViewModels
             AddPanelCommand = new AddPanelCommand(this);
             EditPanelCommand = new EditPanelCommand(this);
             RemovePanelCommand = new RemovePanelCommand(this);
+            OpenSlideOutCommand = new OpenSlideOutCommand(this);
+
+            AddTabCommand = new AddTabCommand(this);
+            EditTabCommand = new EditTabCommand(this);
+            RemoveTabCommand = new RemoveTabCommand(this);
 
             revitItems = new List<string>();
-            Panels = new ObservableCollection<RevitPanel>();
+            Tabs = new ObservableCollection<RevitTab>();
+            nonSlideOuts = new ObservableCollection<RevitControl>();
+            //Panels = new ObservableCollection<RevitPanel>();
         }
         ImageSource GetImageSource(string path)
         {

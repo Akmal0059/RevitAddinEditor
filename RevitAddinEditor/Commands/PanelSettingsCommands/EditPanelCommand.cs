@@ -1,4 +1,5 @@
-﻿using RevitAddinEditor.Models;
+﻿using CustomRevitControls;
+using RevitAddinEditor.Models;
 using RevitAddinEditor.ViewModels;
 using RevitAddinEditor.Views;
 using System;
@@ -24,6 +25,7 @@ namespace RevitAddinEditor.Commands
             psViewModel.Name = panel.Name;
             psViewModel.Id = panel.Id;
             psViewModel.Text = panel.Text;
+            psViewModel.HasArrowButton = panel.HasArrowButton;
 
             PanelSettingsUI ui = new PanelSettingsUI();
             ui.DataContext = psViewModel;
@@ -34,6 +36,7 @@ namespace RevitAddinEditor.Commands
                 panel.Id = psViewModel.Id;
                 panel.Name = psViewModel.Name;
                 panel.Text = psViewModel.Text;
+                panel.HasArrowButton = psViewModel.HasArrowButton;
             }
         }
     }
