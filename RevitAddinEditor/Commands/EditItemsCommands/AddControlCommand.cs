@@ -58,6 +58,15 @@ namespace RevitAddinEditor.Commands.EditItemsCommands
                 case ControlType.Checkbox:
                     control = new Checkbox();
                     break;
+                case ControlType.Combobox:
+                    control = new Combobox();
+                    break;
+                case ControlType.RadioGroup:
+                    control = new RadioGroup();
+                    break;
+                case ControlType.ToggleButton:
+                    control = new ToggleButton();
+                    break;
                 default:
                     break;
             }

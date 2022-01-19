@@ -90,7 +90,10 @@ namespace RevitAddinEditor.ViewModels
                 new AddingControl("StackedRegularButton", ControlType.StackedRegButton),
                 new AddingControl("TextBoxItem", ControlType.TextBox),
                 new AddingControl("Label", ControlType.Textblock),
-                new AddingControl("Checkbox", ControlType.Checkbox),
+                //new AddingControl("Checkbox", ControlType.Checkbox),
+                new AddingControl("Combobox", ControlType.Combobox),
+                new AddingControl("RadioGroup", ControlType.RadioGroup),
+                new AddingControl("ToggleButton", ControlType.ToggleButton),
             };
         }
     }

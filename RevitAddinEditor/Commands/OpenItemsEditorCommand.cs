@@ -25,7 +25,7 @@ namespace RevitAddinEditor.Commands
             {
                 if (addindControl.Type == ControlType.Regular || addindControl.Type == ControlType.StackButton ||
                     addindControl.Type == ControlType.SplitButton || addindControl.Type == ControlType.Pulldown ||
-                    addindControl.Type == ControlType.Separator)
+                    addindControl.Type == ControlType.Separator || addindControl.Type == ControlType.RadioGroup)
                     addindControl.Visible = true;
             }
             ui.ShowDialog();
@@ -43,6 +43,11 @@ namespace RevitAddinEditor.Commands
                         (((RevitControl)splitItem).DataContext as ControlsContext).CurrentItem = ((RevitControl)splitItem).Items?.FirstOrDefault();
                     else 
                         (((RevitControl)splitItem).DataContext as ControlsContext).CurrentItem = ((RevitControl)splitItem).Items[splitItem.SelectedIndex.Value];
+                }
+                else if(control is RadioGroup radioGroup)
+                {
+                    foreach (ToggleButton toggle in radioGroup.Items ?? new List<RevitControl>())
+                        toggle.GroupName = radioGroup.GroupName;
                 }
             }
         }

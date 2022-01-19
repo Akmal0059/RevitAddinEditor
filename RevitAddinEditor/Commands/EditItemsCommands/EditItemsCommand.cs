@@ -34,11 +34,19 @@ namespace RevitAddinEditor.Commands.EditItemsCommands
             var vm = ui.DataContext as PanelViewModel;
 
             if (revitControl is StackedPulldown || revitControl is StackedSplitItem ||
-                revitControl is PulldownButton || revitControl is SplitItem)
+                revitControl is PulldownButton || revitControl is SplitItem || revitControl is Combobox)
             {
                 foreach (var addindControl in vm.AddingControls)
                 {
                     if (addindControl.Type == ControlType.StackedRegButton)
+                        addindControl.Visible = true;
+                }
+            }
+            else if(revitControl is RadioGroup)
+            {
+                foreach (var addindControl in vm.AddingControls)
+                {
+                    if (addindControl.Type == ControlType.ToggleButton)
                         addindControl.Visible = true;
                 }
             }
@@ -48,7 +56,7 @@ namespace RevitAddinEditor.Commands.EditItemsCommands
                 {
                     if (addindControl.Type == ControlType.TextBox || addindControl.Type == ControlType.StackedSplitItem ||
                         addindControl.Type == ControlType.StackedPulldown || addindControl.Type == ControlType.StackedRegButton ||
-                        addindControl.Type == ControlType.Textblock || addindControl.Type == ControlType.Checkbox)
+                        addindControl.Type == ControlType.Textblock || addindControl.Type == ControlType.Checkbox || addindControl.Type == ControlType.Combobox)
                         addindControl.Visible = true;
                 }
             }

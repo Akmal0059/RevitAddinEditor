@@ -32,6 +32,8 @@ namespace RevitAddinEditor.Models
         TextBox = 7,
         Textblock = 8,
         Combobox = 9,
-        Checkbox = 10
+        Checkbox = 10,
+        RadioGroup = 11,
+        ToggleButton = 12,
     }
 }
