@@ -13,10 +13,14 @@ namespace RevitAddinEditor.Commands.EditItemsCommands
 {
     public class EditItemsCommand : CommandBase
     {
-        //private PanelViewModel viewModel;
+        private EditorViewModel viewModel;
         RevitControl revitControl;
 
-        public EditItemsCommand(RevitControl rc) => revitControl = rc;
+        public EditItemsCommand(RevitControl rc, EditorViewModel editorlViewModel)
+        {
+            revitControl = rc;
+            viewModel = editorlViewModel;
+        }
 
         public override bool CanExecute(object parameter)
         {
@@ -32,7 +36,7 @@ namespace RevitAddinEditor.Commands.EditItemsCommands
                 revitControl.Items = new List<RevitControl>();
             AddNewControlUI ui = new AddNewControlUI(revitControl.Items);
             var vm = ui.DataContext as PanelViewModel;
-
+            vm.EditorViewModel = viewModel;
             if (revitControl is StackedPulldown || revitControl is StackedSplitItem ||
                 revitControl is PulldownButton || revitControl is SplitItem || revitControl is Combobox)
             {

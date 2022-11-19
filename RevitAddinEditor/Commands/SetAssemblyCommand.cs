@@ -1,6 +1,7 @@
 ﻿using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using CustomRevitControls.Interfaces;
+using Mono.Cecil;
 using RevitAddinBase.RevitCommands;
 using RevitAddinEditor.ViewModels;
 using System;
@@ -25,51 +26,17 @@ namespace RevitAddinEditor.Commands
 
         public override void Execute(object parameter)
         {
-            //OpenFileDialog openFileDialog = new OpenFileDialog();
-            //openFileDialog.Filter = "Assembly (*.dll)|*.dll";
-            //if (openFileDialog.ShowDialog() == DialogResult.OK)
-            //{
-            var dll = File.ReadAllBytes(@"C:\Users\user110\source\repos\testAddin\testAddin\bin\Debug via Revit Add-In Manager\RevitAddin.dll");
-            var dll2 = File.ReadAllBytes(@"C:\Users\user110\source\repos\RevitPlugins (prod)\InpadPlugins\bin\Debug2\INPDPlugins.dll");
-            var pdb = File.ReadAllBytes(@"C:\Users\user110\source\repos\testAddin\testAddin\bin\Debug via Revit Add-In Manager\RevitAddin.pdb");
-            Evidence evidence = new Evidence();
-            //Assembly assembly = Assembly.Load(dll, pdb, System.Security.SecurityContextSource.CurrentAssembly);
-
-            Assembly assembly = Assembly.LoadFrom(@"C:\Users\user110\source\repos\BoxChecker\BoxChecker\bin\Debug via Revit Add-In Manager\BoxChecker.dll");
-            try
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Assembly (*.dll)|*.dll";
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                //var inst1 = assembly.CreateInstance("testAddin.ExtCommand");
-                //var inst2 = assembly.CreateInstance("testAddin.Command");
+                AssemblyDefinition assemblyDefinition = AssemblyDefinition.ReadAssembly(openFileDialog.FileName);
+                var types = assemblyDefinition.MainModule.Types.ToList();
+                viewModel.SingleCommands = types.Where(x => x.BaseType?.FullName == "RevitAddinBase.RevitCommands.SingletonCommand").Select(x=>x.FullName).ToList();
+                viewModel.ComboBoxes = types.Where(x => x.BaseType?.FullName == "RevitAddinBase.RevitControls.ComboBox").Select(x => x.FullName).ToList();
+                viewModel.AssemblyPath = openFileDialog.FileName;
 
-                var types = assembly.GetTypes();
-
-                viewModel.RevitItems = types.Where(x => IsRevitCommand(x)).Select(x => x.Name).ToList();
             }
-            catch (ReflectionTypeLoadException e)
-            {
-                var types = e.Types.OrderBy(x=>x?.Name).ToList();
-
-                var commands = types.Where(x => IsRevitCommand(x)).Select(x => x?.Name).ToList();
-                StringBuilder sb = new StringBuilder();
-                foreach (Exception exSub in e.LoaderExceptions)
-                {
-                    sb.AppendLine(exSub.Message);
-                    FileNotFoundException exFileNotFound = exSub as FileNotFoundException;
-                    if (exFileNotFound != null)
-                    {
-                        if (!string.IsNullOrEmpty(exFileNotFound.FusionLog))
-                        {
-                            sb.AppendLine("Fusion Log:");
-                            sb.AppendLine(exFileNotFound.FusionLog);
-                        }
-                    }
-                    sb.AppendLine();
-                }
-                string errorMessage = sb.ToString();
-                System.Windows.Forms.MessageBox.Show(errorMessage);
-                //Display or log the error based on your application.
-            }
-            //}
         }
 
         public static BitmapSource GetResourceImage(Type cmd_type, string key)

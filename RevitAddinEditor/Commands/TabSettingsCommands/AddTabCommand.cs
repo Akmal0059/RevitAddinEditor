@@ -15,6 +15,8 @@ namespace RevitAddinEditor.Commands.TabSettingsCommands
 
         public AddTabCommand(EditorViewModel vm) => viewModel = vm;
 
+        public override bool CanExecute(object parameter) => viewModel.AssemblyPath != null;
+
         public override void Execute(object parameter)
         {
             RevitTab tab = new RevitTab();

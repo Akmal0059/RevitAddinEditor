@@ -23,13 +23,14 @@ namespace RevitAddinEditor.ViewModels
 {
     public class EditorViewModel : ViewModelBase
     {
-        List<string> revitItems;
+        List<string> singleCommands;
+        List<string> comboBoxes;
         //ObservableCollection<RevitPanel> panels;
         RevitPanel selectedPanel;
         ObservableCollection<RevitTab> tabs;
         ObservableCollection<RevitControl> nonSlideOuts;
         RevitTab selectedTab;
-
+        string asmPath;
         public RevitTab SelectedTab 
         {
             get => selectedTab;
@@ -79,12 +80,30 @@ namespace RevitAddinEditor.ViewModels
                 OnPropertyChanged();
             }
         }
-        public List<string> RevitItems
+        public List<string> SingleCommands
         {
-            get => revitItems;
+            get => singleCommands;
             set
             {
-                revitItems = value;
+                singleCommands = value;
+                OnPropertyChanged();
+            }
+        }
+        public List<string> ComboBoxes
+        {
+            get => comboBoxes;
+            set
+            {
+                comboBoxes = value;
+                OnPropertyChanged();
+            }
+        }
+        public string AssemblyPath 
+        {
+            get => asmPath;
+            set
+            {
+                asmPath = value;
                 OnPropertyChanged();
             }
         }
@@ -119,7 +138,8 @@ namespace RevitAddinEditor.ViewModels
             EditTabCommand = new EditTabCommand(this);
             RemoveTabCommand = new RemoveTabCommand(this);
 
-            revitItems = new List<string>();
+            singleCommands = new List<string>();
+            comboBoxes = new List<string>();
             Tabs = new ObservableCollection<RevitTab>();
             nonSlideOuts = new ObservableCollection<RevitControl>();
             //Panels = new ObservableCollection<RevitPanel>();

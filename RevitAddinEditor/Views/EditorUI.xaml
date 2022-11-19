@@ -32,188 +32,200 @@
             <RowDefinition Height="190*"/>
             <RowDefinition Height="190*"/>
         </Grid.RowDefinitions>
-        <Menu Grid.Column="0">
-            <MenuItem Header="File" Margin="2,1,2,0" VerticalAlignment="Center">
-                <!--<MenuItem Header="Check assembly" Command="{Binding SetAssemblyCommand}"/>-->
-                <MenuItem Header="Export as xml" Command="{Binding ExportSettings}"/>
-                <MenuItem Header="Import xml" Command="{Binding ImportSettings}"/>
-                <MenuItem Header="Create string resources file">
-                    <MenuItem Header="ru"
+
+        <Grid Grid.Row="0" Grid.ColumnSpan="2">
+            <Menu>
+                <MenuItem Header="File" Margin="2,1,2,0" VerticalAlignment="Center">
+                    <MenuItem Header="Export as xml" Command="{Binding ExportSettings}"/>
+                    <MenuItem Header="Import xml" Command="{Binding ImportSettings}"/>
+                    <Separator/>
+                    <MenuItem Header="Create string resources file"
+                              Command="{Binding CreateResxFileCommand}"
+                              CommandParameter="str"/>
+                    <MenuItem Header="Create media resources file"
                               Command="{Binding CreateResxFileCommand}" 
-                              CommandParameter="ru">
-                        <MenuItem.Icon>
-                            <Image Source="{StaticResource IMG_RU}"/>
-                        </MenuItem.Icon>
-                    </MenuItem>
-                    <MenuItem Header="en" 
-                              Command="{Binding CreateResxFileCommand}" 
-                              CommandParameter="en">
-                        <MenuItem.Icon>
-                            <Image Source="{StaticResource IMG_EN}" />
-                        </MenuItem.Icon>
-                    </MenuItem>
+                              CommandParameter="img"/>
                 </MenuItem>
-                <MenuItem Header="Create image resources file"
-                          Command="{Binding CreateResxFileCommand}" 
-                          CommandParameter="img"/>
-            </MenuItem>
-        </Menu>
-        <ListBox x:Name="LB_Panel" Grid.Row="1" Grid.Column="1" Margin="10,10,10,30" 
-                 SelectionMode="Single" VerticalAlignment="Top" 
-                 ItemsSource="{Binding NonSlideOuts}" Height="130"
-                 Background="#eeeeee">
-            <ListBox.ItemContainerStyle>
-                <Style TargetType="ListBoxItem">
-                    <Setter Property="IsEnabled" Value="{Binding IsEnabled}"/>
-                </Style>
-            </ListBox.ItemContainerStyle>
-            <ListBox.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel ItemHeight="100"/>
-                </ItemsPanelTemplate>
-            </ListBox.ItemsPanel>
-        </ListBox>
-        <Button x:Name="BTN_SlideOut" Grid.Row="1" Grid.Column="1" Height="20"
-                Margin="12,118,25,0" BorderThickness="0"
-                HorizontalContentAlignment="Center" VerticalAlignment="Top"
-                Background="#eeeeee"
-                Command="{Binding OpenSlideOutCommand}">
-            <Button.CommandParameter>
-                <MultiBinding Converter="{StaticResource MultiParamConverter}">
-                    <Binding ElementName="BTN_SlideOut"/>
-                    <Binding ElementName="LB_Panel"/>
-                </MultiBinding>
-            </Button.CommandParameter>
-            <Button.Style>
-                <Style TargetType="Button">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="Button">
-                                <Border x:Name="Btn_Border" Background="Transparent">
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Border>
-                                <ControlTemplate.Triggers>
-                                    <Trigger Property="IsEnabled" Value="False">
-                                        
-                                    </Trigger>
-                                    <Trigger Property="IsMouseOver" Value="true">
-                                        <Setter TargetName="Btn_Border" Property="Background" Value="#cae9f8"/>
-                                        <Setter TargetName="Btn_Border" Property="BorderBrush" Value="#0261bf"/>
-                                        <Setter TargetName="Btn_Border" Property="BorderThickness" Value="1"/>
-                                    </Trigger>
-                                    <Trigger Property="IsPressed" Value="true">
-                                        <Setter TargetName="Btn_Border" Property="Background" Value="#b7d6f2"/>
-                                        <Setter TargetName="Btn_Border" Property="BorderBrush" Value="#0261bf"/>
-                                        <Setter TargetName="Btn_Border" Property="BorderThickness" Value="1"/>
-                                    </Trigger>
-                                </ControlTemplate.Triggers>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </Button.Style>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="{Binding SelectedPanel.Text}"/>
-                <Path Fill="Black" Data="M7,10L12,15L17,10H7Z" HorizontalAlignment="Center"
-                      Height="5" Width="7" Stretch="Fill" Margin="5,4,0,0" 
-                      Visibility="{Binding SelectedPanel.HasSlideOut, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-            </StackPanel>
-        </Button>
-        <Button Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right"
-                VerticalAlignment="Top" Margin="0,118,12,0"
-                Width="12" Height="20" BorderThickness="0"
-                Padding="0" Background="#eeeeee"
-                Visibility="{Binding SelectedPanel.HasArrowButton, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <Button.Style>
-                <Style TargetType="Button">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="Button">
-                                <Border x:Name="Btn_Border"
-                                                        Background="Transparent">
-                                    <ContentPresenter HorizontalAlignment="Center"
-                                                                      VerticalAlignment="Center"/>
-                                </Border>
-                                <ControlTemplate.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="true">
-                                        <Setter TargetName="Btn_Border" Property="Background" Value="#cae9f8"/>
-                                        <Setter TargetName="Btn_Border" Property="BorderBrush" Value="#0261bf"/>
-                                        <Setter TargetName="Btn_Border" Property="BorderThickness" Value="1"/>
-                                    </Trigger>
-                                    <Trigger Property="IsPressed" Value="true">
-                                        <Setter TargetName="Btn_Border" Property="Background" Value="#b7d6f2"/>
-                                        <Setter TargetName="Btn_Border" Property="BorderBrush" Value="#0261bf"/>
-                                        <Setter TargetName="Btn_Border" Property="BorderThickness" Value="1"/>
-                                    </Trigger>
-                                </ControlTemplate.Triggers>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </Button.Style>
-            <StackPanel>
-                <Canvas Width="8" Height="13">
-                    <Path Fill="Black" Width="7" Height="7" Stretch="Fill"
-                          Canvas.Top="3" Canvas.Left="0.5"
-                          Data="M5,6.41L6.41,5L17,15.59V9H19V19H9V17H15.59L5,6.41Z" />
-                </Canvas>
-            </StackPanel>
-        </Button>
-        <ListBox Grid.Column="0" Grid.Row="1" Margin="10,10,10,30" 
-                 ItemsSource="{Binding Tabs}" SelectedItem="{Binding SelectedTab}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Title}"/>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <Grid VerticalAlignment="Bottom" Grid.Row="1" Margin="10,0,10,5">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Button Grid.Row="2" Grid.Column="0" Content="Add"
+            </Menu>
+        </Grid>
+        
+        <Grid Grid.Column="0" Grid.Row="1">
+            <ListBox Margin="10,10,10,30" 
+                     ItemsSource="{Binding Tabs}" SelectedItem="{Binding SelectedTab}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Title}"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <Grid VerticalAlignment="Bottom" Grid.Row="1" Margin="10,0,10,5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Row="2" Grid.Column="0" Content="Add"
                     Margin="0,0,5,0"
                     Command="{Binding AddTabCommand}"/>
 
-            <Button Grid.Row="2" Grid.Column="1" Content="Remove"
+                <Button Grid.Row="2" Grid.Column="1" Content="Remove"
                     Margin="5,0,5,0"
                     Command="{Binding RemoveTabCommand}"/>
 
-            <Button Grid.Row="2" Content="Edit" Grid.Column="2"
+                <Button Grid.Row="2" Content="Edit" Grid.Column="2"
                     Margin="5,0,0,0"
                     Command="{Binding EditTabCommand}"/>
-        </Grid>
-        <ListBox Grid.Row="2" Grid.Column="0" Margin="10,10,10,30"
-                 ItemsSource="{Binding SelectedTab.Panels}" SelectedItem="{Binding SelectedPanel}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Text}"/>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <Grid VerticalAlignment="Bottom" Grid.Row="2" Margin="10,0,10,5">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Button Grid.Row="2" Grid.Column="0" Content="Add"
-                    Margin="0,0,5,0"
-                    Command="{Binding AddPanelCommand}"/>
-
-            <Button Grid.Row="2" Grid.Column="1" Content="Remove"
-                    Margin="5,0,5,0"
-                    Command="{Binding RemovePanelCommand}"/>
-
-            <Button Grid.Row="2" Content="Edit" Grid.Column="2"
-                    Margin="5,0,0,0"
-                    Command="{Binding EditPanelCommand}"/>
+            </Grid>
         </Grid>
 
-        <Button Grid.Column="1" Grid.Row="1" Content="Edit panel" Margin="10"
+        <Grid Grid.Column="0" Grid.Row="2">
+            <ListBox Margin="10,10,10,30"
+                     ItemsSource="{Binding SelectedTab.Panels}" SelectedItem="{Binding SelectedPanel}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Text}"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <Grid VerticalAlignment="Bottom" Grid.Row="2" Margin="10,0,10,5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Row="2" Grid.Column="0" Content="Add"
+                        Margin="0,0,5,0"
+                        Command="{Binding AddPanelCommand}"/>
+
+                <Button Grid.Row="2" Grid.Column="1" Content="Remove"
+                        Margin="5,0,5,0"
+                        Command="{Binding RemovePanelCommand}"/>
+
+                <Button Grid.Row="2" Content="Edit" Grid.Column="2"
+                        Margin="5,0,0,0"
+                        Command="{Binding EditPanelCommand}"/>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Column="1" Grid.Row="1">
+            <ListBox x:Name="LB_Panel" Grid.Row="1" Grid.Column="1" Margin="10,10,10,30" 
+                     SelectionMode="Single" VerticalAlignment="Top" 
+                     ItemsSource="{Binding NonSlideOuts}" Height="130"
+                     Background="#eeeeee">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="IsEnabled" Value="{Binding IsEnabled}"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel ItemHeight="100"/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+            </ListBox>
+            <Button x:Name="BTN_SlideOut" Grid.Row="1" Grid.Column="1" Height="20"
+                    Margin="12,118,25,0" BorderThickness="0"
+                    HorizontalContentAlignment="Center" VerticalAlignment="Top"
+                    Background="#eeeeee"
+                    Command="{Binding OpenSlideOutCommand}">
+                <Button.CommandParameter>
+                    <MultiBinding Converter="{StaticResource MultiParamConverter}">
+                        <Binding ElementName="BTN_SlideOut"/>
+                        <Binding ElementName="LB_Panel"/>
+                    </MultiBinding>
+                </Button.CommandParameter>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border x:Name="Btn_Border" Background="Transparent">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsEnabled" Value="False">
+
+                                        </Trigger>
+                                        <Trigger Property="IsMouseOver" Value="true">
+                                            <Setter TargetName="Btn_Border" Property="Background" Value="#cae9f8"/>
+                                            <Setter TargetName="Btn_Border" Property="BorderBrush" Value="#0261bf"/>
+                                            <Setter TargetName="Btn_Border" Property="BorderThickness" Value="1"/>
+                                        </Trigger>
+                                        <Trigger Property="IsPressed" Value="true">
+                                            <Setter TargetName="Btn_Border" Property="Background" Value="#b7d6f2"/>
+                                            <Setter TargetName="Btn_Border" Property="BorderBrush" Value="#0261bf"/>
+                                            <Setter TargetName="Btn_Border" Property="BorderThickness" Value="1"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding SelectedPanel.Text}"/>
+                    <Path Fill="Black" Data="M7,10L12,15L17,10H7Z" HorizontalAlignment="Center"
+                          Height="5" Width="7" Stretch="Fill" Margin="5,4,0,0" 
+                          Visibility="{Binding SelectedPanel.HasSlideOut, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                </StackPanel>
+            </Button>
+            <Button Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right"
+                    VerticalAlignment="Top" Margin="0,118,12,0"
+                    Width="12" Height="20" BorderThickness="0"
+                    Padding="0" Background="#eeeeee"
+                    Visibility="{Binding SelectedPanel.HasArrowButton, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border x:Name="Btn_Border"
+                                            Background="Transparent">
+                                        <ContentPresenter HorizontalAlignment="Center"
+                                                          VerticalAlignment="Center"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="true">
+                                            <Setter TargetName="Btn_Border" Property="Background" Value="#cae9f8"/>
+                                            <Setter TargetName="Btn_Border" Property="BorderBrush" Value="#0261bf"/>
+                                            <Setter TargetName="Btn_Border" Property="BorderThickness" Value="1"/>
+                                        </Trigger>
+                                        <Trigger Property="IsPressed" Value="true">
+                                            <Setter TargetName="Btn_Border" Property="Background" Value="#b7d6f2"/>
+                                            <Setter TargetName="Btn_Border" Property="BorderBrush" Value="#0261bf"/>
+                                            <Setter TargetName="Btn_Border" Property="BorderThickness" Value="1"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+                <StackPanel>
+                    <Canvas Width="8" Height="13">
+                        <Path Fill="Black" Width="7" Height="7" Stretch="Fill"
+                          Canvas.Top="3" Canvas.Left="0.5"
+                          Data="M5,6.41L6.41,5L17,15.59V9H19V19H9V17H15.59L5,6.41Z" />
+                    </Canvas>
+                </StackPanel>
+            </Button>
+
+            <Button Grid.Column="1" Grid.Row="1" Content="Edit panel" Margin="10"
                 Padding="5,3,5,3" VerticalAlignment="Bottom" HorizontalAlignment="Right"
                 Command="{Binding OpenItemsEditorCommand}"/>
+        </Grid>
+
+        <Grid Grid.Column="1" Grid.Row="2">
+            <TextBlock Text="Выберите файл сборки (.dll)"
+                       Margin="10, 20" VerticalAlignment="Top"
+                       HorizontalAlignment="Left"/>
+            <TextBox Margin="10,40,90,0" VerticalAlignment="Top"
+                     Height="23" Text="{Binding AssemblyPath}"
+                     FontSize="15" IsReadOnly="True"/>
+            <Button VerticalAlignment="Top" HorizontalAlignment="Right"
+                    Height="23" Width="70" Margin="10,40"
+                    Content=". . ."
+                    Command="{Binding SetAssemblyCommand}"/>
+        </Grid>
     </Grid>
 </Window>

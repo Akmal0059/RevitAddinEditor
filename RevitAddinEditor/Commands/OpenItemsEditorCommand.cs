@@ -21,7 +21,9 @@ namespace RevitAddinEditor.Commands
         public override void Execute(object parameter)
         {
             AddNewControlUI ui = new AddNewControlUI(viewModel.SelectedPanel.Controls);
-            foreach(var addindControl in (ui.DataContext as PanelViewModel).AddingControls)
+            PanelViewModel panelViewModel = ui.DataContext as PanelViewModel;
+            panelViewModel.EditorViewModel = viewModel;
+            foreach(var addindControl in panelViewModel.AddingControls)
             {
                 if (addindControl.Type == ControlType.Regular || addindControl.Type == ControlType.StackButton ||
                     addindControl.Type == ControlType.SplitButton || addindControl.Type == ControlType.Pulldown ||
@@ -29,13 +31,13 @@ namespace RevitAddinEditor.Commands
                     addindControl.Visible = true;
             }
             ui.ShowDialog();
-            if ((ui.DataContext as PanelViewModel).DialogResult == System.Windows.Forms.DialogResult.OK)
+            if (panelViewModel.DialogResult == System.Windows.Forms.DialogResult.OK)
             {
-                viewModel.SelectedPanel.Controls = (ui.DataContext as PanelViewModel).Controls;
+                viewModel.SelectedPanel.Controls = panelViewModel.Controls;
                 viewModel.NonSlideOuts = new ObservableCollection<RevitControl>(viewModel.SelectedPanel.Controls.Where(x => !x.IsSlideOut));
             }
             ui.UpdateLayout();
-            foreach(var control in (ui.DataContext as PanelViewModel).Controls)
+            foreach(var control in panelViewModel.Controls)
             {
                 if(control is ISplitItem splitItem)
                 {

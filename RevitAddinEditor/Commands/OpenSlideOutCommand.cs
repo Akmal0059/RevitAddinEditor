@@ -20,6 +20,8 @@ namespace RevitAddinEditor.Commands
             viewModel = vm;
         }
 
+        public override bool CanExecute(object parameter) => viewModel.SelectedPanel != null;
+
         public override void Execute(object parameter)
         {
             var paramArray = parameter as object[];

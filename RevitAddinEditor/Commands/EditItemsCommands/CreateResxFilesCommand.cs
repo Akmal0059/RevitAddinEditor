@@ -34,7 +34,7 @@ namespace RevitAddinEditor.Commands.EditItemsCommands
             {
                 if ((string)parameter == "img")
                     SaveMediaResources(saveFileDialog.FileName);
-                else
+                else if ((string)parameter == "str")
                     SaveStringResources(saveFileDialog.FileName);
             }
         }

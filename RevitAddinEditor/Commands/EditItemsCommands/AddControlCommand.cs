@@ -28,7 +28,7 @@ namespace RevitAddinEditor.Commands.EditItemsCommands
                     control.IsEnabled = false;
                     break;
                 case ControlType.Regular:
-                    control = new RegularButton();
+                    control = new RegularButton(viewModel.EditorViewModel.SingleCommands);
                     break;
                 case ControlType.Pulldown:
                     control = new PulldownButton();
@@ -46,7 +46,7 @@ namespace RevitAddinEditor.Commands.EditItemsCommands
                     control = new StackedSplitItem();
                     break;
                 case ControlType.StackedRegButton:
-                    control = new StackedRegularButton();
+                    control = new StackedRegularButton(viewModel.EditorViewModel.SingleCommands);
                     break;
                 case ControlType.TextBox:
                     control = new TextBoxItem();
@@ -59,7 +59,7 @@ namespace RevitAddinEditor.Commands.EditItemsCommands
                     control = new Checkbox();
                     break;
                 case ControlType.Combobox:
-                    control = new Combobox();
+                    control = new Combobox(viewModel.EditorViewModel.ComboBoxes);
                     break;
                 case ControlType.RadioGroup:
                     control = new RadioGroup();
@@ -73,7 +73,7 @@ namespace RevitAddinEditor.Commands.EditItemsCommands
 
             if (control != null)
             {
-                control.SetProperties(command: new EditItemsCommand(control));
+                control.SetProperties(command: new EditItemsCommand(control, viewModel.EditorViewModel), viewModel.EditorViewModel.SingleCommands);
                 viewModel.Controls.Add(control);
                 viewModel.SelectedControl = control;
             }

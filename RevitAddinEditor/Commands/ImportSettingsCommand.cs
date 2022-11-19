@@ -27,6 +27,8 @@ namespace RevitAddinEditor.Commands
             resDict = new Dictionary<string, object>();
         }
 
+        public override bool CanExecute(object parameter) => viewModel.AssemblyPath != null;
+
         public override void Execute(object parameter)
         {
             resDict.Clear();
@@ -59,7 +61,7 @@ namespace RevitAddinEditor.Commands
                 List<RevitTab> revitTabs = new List<RevitTab>();
                 foreach (var t in ribbonTabs)
                 {
-                    RevitTab revitTab = new RevitTab(t, resDict);
+                    RevitTab revitTab = new RevitTab(t, resDict, viewModel.SingleCommands);
 
                     foreach (var panel in revitTab.Panels)
                     {
@@ -76,8 +78,14 @@ namespace RevitAddinEditor.Commands
         }
         void SetPropeties(RevitControl control)
         {
-            control.SetProperties(command: new EditItemsCommand(control),
-                                  commands: new List<string>() { "1", "2", "3" });
+            if (control is Combobox)
+            {
+                control.SetProperties(command: new EditItemsCommand(control, viewModel),
+                                      commands: viewModel.ComboBoxes);
+            }
+            else
+                control.SetProperties(command: new EditItemsCommand(control, viewModel),
+                                      commands: viewModel.SingleCommands);
             if (control.HasElements)
                 foreach (var elem in control.Items)
                     SetPropeties(elem);

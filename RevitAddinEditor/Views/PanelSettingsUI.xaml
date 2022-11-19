@@ -26,13 +26,15 @@
             <TextBlock Text="Id" Margin="5" Height="18"/>
             <TextBlock Text="Name" Margin="5" Height="18"/>
             <TextBlock Text="Text" Margin="5" Height="18"/>
-            <TextBlock Text="With arrow button" Margin="5" Height="18"/>
+            <TextBlock Text="With arrow button" Margin="5" Height="18"
+                       Visibility="Hidden"/>
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Column="1">
             <TextBox Text="{Binding Id}" Margin="0,5,5,5" Height="18"/>
             <TextBox Text="{Binding Name}" Margin="0,5,5,5" Height="18"/>
             <TextBox Text="{Binding Text}" Margin="0,5,5,5" Height="18"/>
-            <CheckBox Margin="0,5,5,5" IsChecked="{Binding HasArrowButton}"/>
+            <CheckBox Margin="0,5,5,5" IsChecked="{Binding HasArrowButton}"
+                      Visibility="Hidden"/>
         </StackPanel>
         <Button x:Name="Btn_Ok" Content="OK" Grid.Column="1" Grid.Row="1" Margin="145,0,5,5"
                 Command="{Binding CloseCommand}" Tag="1" Height="30" VerticalAlignment="Bottom">

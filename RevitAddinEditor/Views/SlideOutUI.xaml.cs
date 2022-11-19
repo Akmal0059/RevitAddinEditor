@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -55,6 +56,11 @@ namespace RevitAddinEditor.Views
                 alreadyClosed = true;
                 Close();
             }
+        }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            alreadyClosed = true;
         }
     }
 }
