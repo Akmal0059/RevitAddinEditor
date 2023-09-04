@@ -1,18 +1,9 @@
-﻿using Autodesk.Revit.DB;
-using Autodesk.Revit.UI;
-using CustomRevitControls.Interfaces;
-using Mono.Cecil;
-using RevitAddinBase.RevitCommands;
+﻿using Mono.Cecil;
 using RevitAddinEditor.ViewModels;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Resources;
-using System.Security.Policy;
-using System.Text;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Media.Imaging;
@@ -64,7 +55,7 @@ namespace RevitAddinEditor.Commands
                 if (type == null)
                     return false;
 
-                result = type.IsSubclassOf(typeof(SingletonCommand));
+                result = type.IsSubclassOf(typeof(RevitAddinBase.RevitCommands.SingletonCommand));
             }
             catch { }
 
