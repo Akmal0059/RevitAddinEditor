@@ -39,6 +39,30 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_60202E7F4866B89399E95CE3EE2DD161"
+        "OwnerKey" = "8:_1E297AE356654086B4B49EC1CEEFF365"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_60202E7F4866B89399E95CE3EE2DD161"
+        "OwnerKey" = "8:_C249BB87C1A5438887DFB9563E97C32C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_60202E7F4866B89399E95CE3EE2DD161"
+        "OwnerKey" = "8:_9205DAAD73304F568CFC470758400993"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_60202E7F4866B89399E95CE3EE2DD161"
+        "OwnerKey" = "8:_8B7A9B63DF0049BABF978A74EE5F3B31"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_609BF9CDE8C54B48A3BED0AB2E12042B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -111,32 +135,32 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_E3D1111C2469DF294B39B07AF60067E5"
-        "OwnerKey" = "8:_8B7A9B63DF0049BABF978A74EE5F3B31"
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_75FA2F4149524EC491F26E06B9216CD4"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_E3D1111C2469DF294B39B07AF60067E5"
-        "OwnerKey" = "8:_1E297AE356654086B4B49EC1CEEFF365"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_E3D1111C2469DF294B39B07AF60067E5"
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_C249BB87C1A5438887DFB9563E97C32C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_E3D1111C2469DF294B39B07AF60067E5"
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_99D18C48155D4122B9D4521D0E3441CA"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_9205DAAD73304F568CFC470758400993"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_75FA2F4149524EC491F26E06B9216CD4"
+        "OwnerKey" = "8:_8B7A9B63DF0049BABF978A74EE5F3B31"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -154,7 +178,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_C544607D47750A86B4E815855930C890"
+        "OwnerKey" = "8:_63A9504E43D9408884F2A02D185ADC7C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -166,13 +190,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_8B7A9B63DF0049BABF978A74EE5F3B31"
+        "OwnerKey" = "8:_34DC9BFDF6074F86866BA500294FA3D0"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_99D18C48155D4122B9D4521D0E3441CA"
+        "OwnerKey" = "8:_C544607D47750A86B4E815855930C890"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -184,31 +208,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_C249BB87C1A5438887DFB9563E97C32C"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_9205DAAD73304F568CFC470758400993"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_63A9504E43D9408884F2A02D185ADC7C"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_34DC9BFDF6074F86866BA500294FA3D0"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_E3D1111C2469DF294B39B07AF60067E5"
+        "OwnerKey" = "8:_60202E7F4866B89399E95CE3EE2DD161"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -229,6 +229,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -245,6 +253,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -309,7 +325,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:CustomRevitControls, Version=1.2.0.1, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:CustomRevitControls, Version=1.1.0.1, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_34DC9BFDF6074F86866BA500294FA3D0"
@@ -385,6 +401,37 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_60202E7F4866B89399E95CE3EE2DD161"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Mono.Cecil, Version=0.11.5.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_60202E7F4866B89399E95CE3EE2DD161"
+                    {
+                    "Name" = "8:Mono.Cecil.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Mono.Cecil.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_7BBE5D18465249399DE0A06EF64BFA3D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:TRUE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_609BF9CDE8C54B48A3BED0AB2E12042B"
@@ -504,7 +551,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:RevitAddinEditor, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:RevitAddinEditor, Version=1.1.0.1, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_8B7A9B63DF0049BABF978A74EE5F3B31"
@@ -566,7 +613,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:RevitAddinBase, Version=1.0.4.1, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:RevitAddinBase, Version=1.5.0.1, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_99D18C48155D4122B9D4521D0E3441CA"
@@ -597,7 +644,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:CustomRevitControls, Version=1.2.0.1, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:CustomRevitControls, Version=1.1.0.1, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_A0829BFDB57575C2C3485CD5F2F2F943"
@@ -659,7 +706,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:RevitAddinBase, Version=1.0.4.1, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:RevitAddinBase, Version=1.5.0.1, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_C544607D47750A86B4E815855930C890"
@@ -669,37 +716,6 @@
                     }
                 }
             "SourcePath" = "8:RevitAddinBase.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_7BBE5D18465249399DE0A06EF64BFA3D"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:TRUE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E3D1111C2469DF294B39B07AF60067E5"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Mono.Cecil, Version=0.11.5.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_E3D1111C2469DF294B39B07AF60067E5"
-                    {
-                    "Name" = "8:Mono.Cecil.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Mono.Cecil.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_7BBE5D18465249399DE0A06EF64BFA3D"
@@ -773,15 +789,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:RevitAddinEditor"
-        "ProductCode" = "8:{A6110FE3-39C5-4B72-974A-5AC9C6818068}"
-        "PackageCode" = "8:{BFB8E524-0AAE-4C58-B1DE-70F078D28576}"
+        "ProductCode" = "8:{15506241-17DD-4833-8B65-8599FF6435F2}"
+        "PackageCode" = "8:{88F79E02-66F8-46D1-974E-B59F05758E32}"
         "UpgradeCode" = "8:{B257A926-A8AA-4422-B2A8-D267F86B2B24}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.0"
+        "ProductVersion" = "8:1.0.1"
         "Manufacturer" = "8:Inpad"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
